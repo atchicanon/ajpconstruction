@@ -8,6 +8,11 @@
       </div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <!-- Logo grand -->
+        <div class="mb-12">
+          <img src="/logo.png" alt="AJP" class="h-32 w-auto" />
+        </div>
+
         <div class="max-w-3xl">
           <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-500/10 border border-primary-500/30 rounded-full text-sm font-medium text-primary-400 mb-8">
             Tous corps d'état — La Réunion
@@ -23,8 +28,11 @@
           </p>
 
           <div class="flex flex-col sm:flex-row gap-4">
-            <NuxtLink to="/devis" class="btn-primary text-base px-7 py-3.5">
+            <NuxtLink to="/devis" class="btn-primary text-base px-7 py-3.5 flex items-center justify-center gap-2">
               Demander un devis gratuit
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </NuxtLink>
             <a href="#realisations" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
               Voir nos réalisations
@@ -39,35 +47,6 @@
             <div v-for="stat in stats" :key="stat.label" class="py-6 px-8 text-center">
               <div class="text-3xl font-extrabold text-white">{{ stat.value }}</div>
               <div class="text-dark-400 text-sm mt-1">{{ stat.label }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERTISE -->
-    <section id="expertise" class="py-24">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">
-          Nos domaines <span class="text-primary-500">d'expertise</span>
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div v-for="service in services" :key="service.title" class="bg-dark-800 rounded-2xl p-7 border border-dark-700">
-            <div class="flex items-start gap-5">
-              <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 text-2xl" :class="service.iconBg">
-                {{ service.icon }}
-              </div>
-              <div class="flex-1">
-                <h3 class="text-xl font-bold mb-2">{{ service.title }}</h3>
-                <p class="text-dark-400 text-sm leading-relaxed mb-4">{{ service.description }}</p>
-                <ul class="grid grid-cols-2 gap-x-4 gap-y-1.5">
-                  <li v-for="item in service.items" :key="item" class="flex items-center gap-2 text-sm text-dark-300">
-                    <span class="w-1.5 h-1.5 rounded-full bg-primary-500" />
-                    {{ item }}
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
@@ -105,6 +84,35 @@
           <NuxtLink to="/realisations" class="btn-primary px-8 py-3">
             Voir toutes nos réalisations
           </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section id="expertise" class="py-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">
+          Nos domaines <span class="text-primary-500">d'expertise</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div v-for="service in services" :key="service.title" class="bg-dark-800 rounded-2xl p-7 border border-dark-700">
+            <div class="flex items-start gap-5">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 text-2xl" :class="service.iconBg">
+                {{ service.icon }}
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold mb-2">{{ service.title }}</h3>
+                <p class="text-dark-400 text-sm leading-relaxed mb-4">{{ service.description }}</p>
+                <ul class="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                  <li v-for="item in service.items" :key="item" class="flex items-center gap-2 text-sm text-dark-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-primary-500" />
+                    {{ item }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
