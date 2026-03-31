@@ -1,10 +1,16 @@
 <template>
-  <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-24">
+      <div class="flex items-center justify-between h-20">
         <!-- Logo -->
-        <NuxtLink to="/" class="flex items-center gap-3">
-          <img src="/logo.png" alt="AJP Construction" class="h-20 w-auto" />
+        <NuxtLink to="/" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center font-bold text-white text-lg shrink-0">
+            A
+          </div>
+          <div class="leading-tight">
+            <div class="font-bold text-white text-base">AJP</div>
+            <div class="text-dark-400 text-xs">Construction</div>
+          </div>
         </NuxtLink>
 
         <!-- Desktop nav -->
@@ -13,19 +19,23 @@
             v-for="link in navLinks"
             :key="link.to"
             :to="link.to"
-            class="text-dark-600 hover:text-primary-500 font-medium transition-colors"
-            active-class="text-primary-500"
+            class="text-dark-300 hover:text-white font-medium text-sm transition-colors"
+            active-class="text-white"
           >
             {{ link.label }}
           </NuxtLink>
-          <NuxtLink to="/devis" class="btn-primary text-sm">
-            Demander un devis
-          </NuxtLink>
         </nav>
+
+        <!-- CTA -->
+        <div class="hidden md:block">
+          <NuxtLink to="/devis" class="btn-primary text-sm px-5 py-2.5">
+            Devis gratuit
+          </NuxtLink>
+        </div>
 
         <!-- Mobile menu button -->
         <button
-          class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors text-white"
           @click="mobileMenuOpen = !mobileMenuOpen"
           aria-label="Menu"
         >
@@ -48,20 +58,20 @@
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <div v-if="mobileMenuOpen" class="md:hidden bg-white border-t shadow-lg">
-        <nav class="px-4 py-4 flex flex-col gap-3">
+      <div v-if="mobileMenuOpen" class="md:hidden bg-dark-900 border-t border-white/10">
+        <nav class="px-4 py-4 flex flex-col gap-1">
           <NuxtLink
             v-for="link in navLinks"
             :key="link.to"
             :to="link.to"
-            class="text-dark-600 hover:text-primary-500 font-medium py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
-            active-class="text-primary-500 bg-primary-50"
+            class="text-dark-300 hover:text-white font-medium py-3 px-4 rounded-lg hover:bg-white/5 transition-colors"
+            active-class="text-white bg-white/5"
             @click="mobileMenuOpen = false"
           >
             {{ link.label }}
           </NuxtLink>
-          <NuxtLink to="/devis" class="btn-primary text-center mt-2" @click="mobileMenuOpen = false">
-            Demander un devis
+          <NuxtLink to="/devis" class="btn-primary text-center mt-3" @click="mobileMenuOpen = false">
+            Devis gratuit
           </NuxtLink>
         </nav>
       </div>
@@ -69,7 +79,7 @@
   </header>
 
   <!-- Spacer -->
-  <div class="h-24" />
+  <div class="h-20" />
 </template>
 
 <script setup lang="ts">
@@ -77,8 +87,8 @@ const mobileMenuOpen = ref(false)
 
 const navLinks = [
   { to: '/', label: 'Accueil' },
-  { to: '/services', label: 'Services' },
+  { to: '/#expertise', label: 'Expertise' },
   { to: '/realisations', label: 'Réalisations' },
-  { to: '/a-propos', label: 'À propos' },
+  { to: '/devis', label: 'Contact' },
 ]
 </script>
