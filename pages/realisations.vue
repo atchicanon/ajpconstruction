@@ -227,10 +227,18 @@ const selectedCategory = ref<string>('Tous')
 const selectedProject = ref<Realisation | null>(null)
 const currentImageIndex = ref(0)
 
+const route = useRoute()
+
 const filteredRealisations = computed(() => {
   if (!realisations.value) return []
   if (selectedCategory.value === 'Tous') return realisations.value
   return realisations.value.filter(r => r.category === selectedCategory.value)
+})
+
+onMounted(() => {
+  if (route.query.category) {
+    selectedCategory.value = String(route.query.category)
+  }
 })
 
 function openProject(project: Realisation) {

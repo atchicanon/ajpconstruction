@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx nuxi@latest init . --force --packageManager npm)",
+      "Bash(npx nuxi@latest init temp-nuxt --force --packageManager npm --template minimal)",
+      "Bash(rm -rf temp-nuxt)",
+      "Bash(mkdir -p pages components layouts public assets/css content/realisations)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s http://localhost:3000/services)",
+      "Bash(curl -s http://localhost:3000/a-propos)",
+      "Bash(curl -s http://localhost:3000/api/realisations)",
+      "Bash(taskkill //f //im node.exe)",
+      "Bash(curl -s -X POST http://localhost:3000/api/realisations -H \"Content-Type: application/json\" -d '{\"\"title\"\":\"\"Villa Saint-Denis\"\",\"\"category\"\":\"\"Gros œuvre\"\",\"\"location\"\":\"\"Saint-Denis\"\",\"\"description\"\":\"\"Construction complète villa 150m²\"\",\"\"year\"\":\"\"2025\"\"}')",
+      "WebFetch(domain:9jo9gs.atoms.world)"
+    ]
+  }
+}
