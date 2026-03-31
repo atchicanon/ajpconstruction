@@ -22,7 +22,7 @@
 
         <!-- CTA -->
         <div class="hidden md:block">
-          <NuxtLink to="/devis" class="btn-primary text-sm px-5 py-2.5">
+          <NuxtLink to="/devis" class="btn-nav-devis">
             Devis gratuit
           </NuxtLink>
         </div>
@@ -64,7 +64,7 @@
           >
             {{ link.label }}
           </NuxtLink>
-          <NuxtLink to="/devis" class="btn-primary text-center mt-3" @click="mobileMenuOpen = false">
+          <NuxtLink to="/devis" class="btn-nav-devis">
             Devis gratuit
           </NuxtLink>
         </nav>

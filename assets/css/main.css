@@ -63,3 +63,22 @@
   background-size: 200% 200%;
   animation: gradient-shift 4s ease infinite;
 }
+
+.btn-nav-devis {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  background: #e63b2e;          /* Rouge franc, pas transparent */
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  border: none;
+  transition: background 180ms ease, transform 180ms ease;
+  white-space: nowrap;
+}
+
+.btn-nav-devis:hover {
+  background: #c0281c;
+  transform: translateY(-1px);
+}

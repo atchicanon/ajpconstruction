@@ -9,9 +9,6 @@
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <!-- Logo grand -->
-        <div class="mb-12">
-          <img src="/logo.png" alt="AJP" class="h-32 w-auto" />
-        </div>
 
         <div class="max-w-3xl">
           <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-500/10 border border-primary-500/30 rounded-full text-sm font-medium text-primary-400 mb-8">
