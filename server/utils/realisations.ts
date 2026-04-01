@@ -30,6 +30,7 @@ export async function saveRealisations(data: Realisation[]) {
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: 'application/json',
+    cacheControlMaxAge: 0,
   })
   cachedUrl = blob.url
 }

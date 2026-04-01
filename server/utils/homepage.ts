@@ -12,6 +12,7 @@ export interface HomepageConfig {
 }
 
 const BLOB_KEY = 'data/homepage.json'
+let cachedUrl: string | null = null
 
 const DEFAULT_CONFIG: HomepageConfig = {
   heroImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80',
@@ -35,17 +36,23 @@ const DEFAULT_CONFIG: HomepageConfig = {
 }
 
 export async function getHomepageConfig(): Promise<HomepageConfig> {
-  const { blobs } = await list({ prefix: BLOB_KEY, limit: 1 })
-  if (!blobs.length) return DEFAULT_CONFIG
-  const res = await fetch(blobs[0].url)
+  if (!cachedUrl) {
+    const { blobs } = await list({ prefix: BLOB_KEY, limit: 1 })
+    if (!blobs.length) return DEFAULT_CONFIG
+    cachedUrl = blobs[0].url
+  }
+  const res = await fetch(`${cachedUrl}?t=${Date.now()}`, { cache: 'no-store' })
+  if (!res.ok) { cachedUrl = null; return DEFAULT_CONFIG }
   return res.json()
 }
 
 export async function saveHomepageConfig(config: HomepageConfig) {
-  await put(BLOB_KEY, JSON.stringify(config), {
+  const blob = await put(BLOB_KEY, JSON.stringify(config), {
     access: 'public',
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: 'application/json',
+    cacheControlMaxAge: 0,
   })
+  cachedUrl = blob.url
 }

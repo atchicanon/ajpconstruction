@@ -374,6 +374,16 @@ definePageMeta({ layout: false })
 
 useHead({ title: 'Admin — AJP Construction' })
 
+onMounted(async () => {
+  try {
+    await $fetch('/api/auth/check')
+    authenticated.value = true
+    await Promise.all([loadRealisations(), loadHomepage()])
+  } catch {
+    // not authenticated, show login form
+  }
+})
+
 // Auth
 const authenticated = ref(false)
 const password = ref('')
