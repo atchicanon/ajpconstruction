@@ -1,5 +1,4 @@
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { put, list } from '@vercel/blob'
 
 export interface HomepageCard {
   image: string
@@ -12,7 +11,7 @@ export interface HomepageConfig {
   cards: HomepageCard[]
 }
 
-const DATA_PATH = join(process.cwd(), 'data', 'homepage.json')
+const BLOB_KEY = 'data/homepage.json'
 
 const DEFAULT_CONFIG: HomepageConfig = {
   heroImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80',
@@ -35,20 +34,17 @@ const DEFAULT_CONFIG: HomepageConfig = {
   ],
 }
 
-function ensureDataFile() {
-  const dir = join(process.cwd(), 'data')
-  if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
-  if (!existsSync(DATA_PATH)) {
-    writeFileSync(DATA_PATH, JSON.stringify(DEFAULT_CONFIG, null, 2), 'utf-8')
-  }
+export async function getHomepageConfig(): Promise<HomepageConfig> {
+  const { blobs } = await list({ prefix: BLOB_KEY, limit: 1 })
+  if (!blobs.length) return DEFAULT_CONFIG
+  const res = await fetch(blobs[0].url)
+  return res.json()
 }
 
-export function getHomepageConfig(): HomepageConfig {
-  ensureDataFile()
-  return JSON.parse(readFileSync(DATA_PATH, 'utf-8'))
-}
-
-export function saveHomepageConfig(config: HomepageConfig) {
-  ensureDataFile()
-  writeFileSync(DATA_PATH, JSON.stringify(config, null, 2), 'utf-8')
+export async function saveHomepageConfig(config: HomepageConfig) {
+  await put(BLOB_KEY, JSON.stringify(config), {
+    access: 'public',
+    addRandomSuffix: false,
+    contentType: 'application/json',
+  })
 }

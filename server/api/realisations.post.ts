@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, message: 'Champs obligatoires manquants' })
   }
 
-  const realisations = getRealisations()
+  const realisations = await getRealisations()
 
   const newReal = {
     id: generateId(body.title),
@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   }
 
   realisations.unshift(newReal)
-  saveRealisations(realisations)
+  await saveRealisations(realisations)
 
   return newReal
 })

@@ -1,5 +1,4 @@
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { put, list } from '@vercel/blob'
 
 export interface Realisation {
   id: string
@@ -11,27 +10,21 @@ export interface Realisation {
   year: string
 }
 
-const DATA_PATH = join(process.cwd(), 'data', 'realisations.json')
+const BLOB_KEY = 'data/realisations.json'
 
-function ensureDataFile() {
-  const dir = join(process.cwd(), 'data')
-  if (!existsSync(dir)) {
-    mkdirSync(dir, { recursive: true })
-  }
-  if (!existsSync(DATA_PATH)) {
-    writeFileSync(DATA_PATH, JSON.stringify([], null, 2), 'utf-8')
-  }
+export async function getRealisations(): Promise<Realisation[]> {
+  const { blobs } = await list({ prefix: BLOB_KEY, limit: 1 })
+  if (!blobs.length) return []
+  const res = await fetch(blobs[0].url)
+  return res.json()
 }
 
-export function getRealisations(): Realisation[] {
-  ensureDataFile()
-  const raw = readFileSync(DATA_PATH, 'utf-8')
-  return JSON.parse(raw)
-}
-
-export function saveRealisations(data: Realisation[]) {
-  ensureDataFile()
-  writeFileSync(DATA_PATH, JSON.stringify(data, null, 2), 'utf-8')
+export async function saveRealisations(data: Realisation[]) {
+  await put(BLOB_KEY, JSON.stringify(data), {
+    access: 'public',
+    addRandomSuffix: false,
+    contentType: 'application/json',
+  })
 }
 
 export function generateId(title: string): string {

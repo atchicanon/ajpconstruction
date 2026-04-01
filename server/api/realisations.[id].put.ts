@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   const body = await readBody(event)
 
-  const realisations = getRealisations()
+  const realisations = await getRealisations()
   const index = realisations.findIndex(r => r.id === id)
 
   if (index === -1) {
@@ -21,6 +21,6 @@ export default defineEventHandler(async (event) => {
     year: body.year ?? realisations[index].year,
   }
 
-  saveRealisations(realisations)
+  await saveRealisations(realisations)
   return realisations[index]
 })

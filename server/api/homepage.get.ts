@@ -1,5 +1,5 @@
 import { getHomepageConfig } from '../utils/homepage'
 
-export default defineEventHandler(() => {
+export default defineEventHandler(async () => {
   return getHomepageConfig()
 })
