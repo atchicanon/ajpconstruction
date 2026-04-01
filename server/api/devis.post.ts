@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
   await resend.emails.send({
     from: 'onboarding@resend.dev',
-    to: 'a.jeffrey974@hotmail.com',
+    to: ['a.jeffrey974@hotmail.com', 'ajc.pedroa@outlook.fr'],
     subject: `Nouvelle demande de devis — ${body.projectType}`,
     html: `
       <h2>Nouvelle demande de devis</h2>

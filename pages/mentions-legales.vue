@@ -13,10 +13,10 @@
           <strong>AJP Construction</strong><br />
           Entreprise de bâtiment tous corps d'état<br />
           Siège social : La Réunion (974)<br />
+          SIRET : 953 638 202 00010<br />
           Téléphone : 06 92 42 24 92<br />
-          Email : contact@ajp-construction.fr
+          Email : ajc.pedroa@outlook.fr
         </p>
-        <!-- TODO: Ajouter SIRET, RCS, capital social -->
 
         <h2>Hébergement</h2>
         <p>
@@ -31,7 +31,7 @@
 
         <h2>Protection des données personnelles</h2>
         <p>
-          Les informations recueillies via le formulaire de contact sont destinées uniquement à AJP Construction et servent à traiter votre demande de devis. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit, contactez-nous à contact@ajp-construction.fr.
+          Les informations recueillies via le formulaire de contact sont destinées uniquement à AJP Construction et servent à traiter votre demande de devis. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit, contactez-nous à ajc.pedroa@outlook.fr.
         </p>
 
         <h2>Cookies</h2>

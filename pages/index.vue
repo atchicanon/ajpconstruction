@@ -196,7 +196,7 @@
         <div class="flex flex-wrap justify-center gap-8 mt-12 text-dark-400 text-sm">
           <span>06 92 42 24 92</span>
           <span class="text-dark-700">|</span>
-          <span>contact@ajp-construction.fr</span>
+          <span>ajc.pedroa@outlook.fr</span>
           <span class="text-dark-700">|</span>
           <span>La Réunion (974)</span>
         </div>
@@ -224,7 +224,7 @@ const homepage = computed(() => homepageData.value ?? {
 })
 
 const stats = [
-  { value: '15+', label: 'Années d\'expérience' },
+  { value: '38', label: 'Années d\'expérience' },
   { value: '500+', label: 'Projets réalisés' },
   { value: '100%', label: 'Satisfaction client' },
 ]
