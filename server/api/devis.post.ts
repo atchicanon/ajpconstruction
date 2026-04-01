@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const resend = new Resend(process.env.RESEND_API_KEY)
 
   await resend.emails.send({
-    from: 'onboarding@resend.dev',
+    from: 'devis@ajp-construction.fr',
     to: ['a.jeffrey974@hotmail.com', 'ajc.pedroa@outlook.fr'],
     subject: `Nouvelle demande de devis — ${body.projectType}`,
     html: `
