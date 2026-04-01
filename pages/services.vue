@@ -85,9 +85,9 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Nos Services — AJP Construction',
+  title: 'Services BTP La Réunion — Terrassement, Gros œuvre, Charpente | AJP Construction',
   meta: [
-    { name: 'description', content: 'Découvrez les services d\'AJP Construction : terrassement, VRD, gros œuvre, charpente, couverture et second œuvre à La Réunion.' },
+    { name: 'description', content: 'AJP Construction intervient sur tous vos travaux BTP à La Réunion : terrassement VRD, gros œuvre béton armé, charpente couverture, second œuvre. Devis gratuit. Saint-Denis, Saint-Pierre, Saint-Paul, Le Port.' },
   ],
 })
 

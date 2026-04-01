@@ -198,9 +198,9 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Nos Réalisations — AJP Construction',
+  title: 'Réalisations BTP La Réunion — Chantiers AJP Construction',
   meta: [
-    { name: 'description', content: 'Découvrez les réalisations d\'AJP Construction à La Réunion : chantiers de terrassement, gros œuvre, charpente et second œuvre.' },
+    { name: 'description', content: 'Découvrez les chantiers réalisés par AJP Construction à La Réunion : maisons, terrassements, toitures, maçonnerie. Photos et détails de nos projets à Saint-Denis, Saint-Pierre, Saint-Paul.' },
   ],
 })
 

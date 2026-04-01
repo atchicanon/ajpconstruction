@@ -122,9 +122,9 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'À propos — AJP Construction',
+  title: 'À propos — AJP Construction, entreprise BTP La Réunion depuis 15 ans',
   meta: [
-    { name: 'description', content: 'Découvrez AJP Construction, entreprise tous corps d\'état à La Réunion. Notre équipe, nos valeurs et notre savoir-faire.' },
+    { name: 'description', content: 'AJP Construction, entreprise de bâtiment tous corps d\'état à La Réunion depuis plus de 15 ans. Plus de 500 projets réalisés. Terrassement, maçonnerie, charpente, couverture, second œuvre.' },
   ],
 })
 

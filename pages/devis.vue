@@ -250,9 +250,9 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'Demander un devis — AJP Construction',
+  title: 'Devis gratuit BTP La Réunion — AJP Construction, réponse sous 48h',
   meta: [
-    { name: 'description', content: 'Demandez un devis gratuit à AJP Construction pour vos travaux de bâtiment à La Réunion. Réponse sous 48h.' },
+    { name: 'description', content: 'Demandez un devis gratuit et sans engagement à AJP Construction pour vos travaux de bâtiment à La Réunion. Terrassement, maçonnerie, charpente, couverture. Réponse sous 48h. Toute l\'île.' },
   ],
 })
 
