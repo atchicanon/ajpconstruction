@@ -144,7 +144,7 @@
                 <button
                   type="submit"
                   :disabled="isSubmitting"
-                  class="btn-primary w-full md:w-auto text-lg px-10 py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                  class="w-full md:w-auto px-10 py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold text-base tracking-widest uppercase rounded-lg transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   <span v-if="!isSubmitting">Envoyer ma demande de devis</span>
                   <span v-else class="flex items-center gap-2">
