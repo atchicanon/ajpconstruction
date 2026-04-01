@@ -205,7 +205,7 @@
                   </div>
                   <div>
                     <p class="font-medium text-dark-900">Téléphone</p>
-                    <p class="text-dark-400 text-sm">06 92 XX XX XX</p>
+                    <a href="tel:+262692422492" class="text-dark-400 text-sm hover:text-primary-500 transition-colors">06 92 42 24 92</a>
                   </div>
                 </div>
 
@@ -273,14 +273,11 @@ const submitSuccess = ref(false)
 async function submitForm() {
   isSubmitting.value = true
 
-  // TODO: Intégrer EmailJS ou Formspree ici
-  // Pour l'instant, simulation d'envoi
-  await new Promise(resolve => setTimeout(resolve, 1500))
+  await $fetch('/api/devis', { method: 'POST', body: form })
 
   submitSuccess.value = true
   isSubmitting.value = false
 
-  // Reset form
   Object.assign(form, {
     lastName: '',
     firstName: '',
