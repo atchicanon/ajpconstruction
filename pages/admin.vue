@@ -17,7 +17,9 @@
             placeholder="Mot de passe"
           />
           <p v-if="loginError" class="text-red-400 text-sm mt-2">Mot de passe incorrect</p>
-          <button type="submit" class="btn-primary w-full mt-4">Se connecter</button>
+          <button type="submit" :disabled="loginLoading" class="btn-primary w-full mt-4 disabled:opacity-50">
+            {{ loginLoading ? 'Connexion...' : 'Se connecter' }}
+          </button>
         </form>
       </div>
     </div>
@@ -35,7 +37,7 @@
             <NuxtLink to="/" target="_blank" class="text-dark-400 hover:text-white text-sm transition-colors">
               Voir le site
             </NuxtLink>
-            <button @click="authenticated = false" class="text-dark-400 hover:text-red-400 text-sm transition-colors">
+            <button @click="logout" class="text-dark-400 hover:text-red-400 text-sm transition-colors">
               Déconnexion
             </button>
           </div>
@@ -288,19 +290,29 @@ definePageMeta({ layout: false })
 useHead({ title: 'Admin — AJP Construction' })
 
 // Auth
-const ADMIN_PASSWORD = 'ajp2024'
 const authenticated = ref(false)
 const password = ref('')
 const loginError = ref(false)
+const loginLoading = ref(false)
 
-function login() {
-  if (password.value === ADMIN_PASSWORD) {
+async function login() {
+  loginLoading.value = true
+  loginError.value = false
+  try {
+    await $fetch('/api/auth/login', { method: 'POST', body: { password: password.value } })
     authenticated.value = true
-    loginError.value = false
     loadRealisations()
-  } else {
+  } catch {
     loginError.value = true
+  } finally {
+    loginLoading.value = false
   }
+}
+
+async function logout() {
+  await $fetch('/api/auth/logout', { method: 'POST' })
+  authenticated.value = false
+  password.value = ''
 }
 
 // Data
