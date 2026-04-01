@@ -13,8 +13,8 @@
           <strong>AJP Construction</strong><br />
           Entreprise de bâtiment tous corps d'état<br />
           Siège social : La Réunion (974)<br />
-          Téléphone : 06 92 XX XX XX<br />
-          Email : contact@ajpconstruction.re
+          Téléphone : 06 92 42 24 92<br />
+          Email : contact@ajp-construction.fr
         </p>
         <!-- TODO: Ajouter SIRET, RCS, capital social -->
 
@@ -31,7 +31,7 @@
 
         <h2>Protection des données personnelles</h2>
         <p>
-          Les informations recueillies via le formulaire de contact sont destinées uniquement à AJP Construction et servent à traiter votre demande de devis. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit, contactez-nous à contact@ajpconstruction.re.
+          Les informations recueillies via le formulaire de contact sont destinées uniquement à AJP Construction et servent à traiter votre demande de devis. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit, contactez-nous à contact@ajp-construction.fr.
         </p>
 
         <h2>Cookies</h2>

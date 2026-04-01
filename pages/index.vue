@@ -188,15 +188,15 @@
           <NuxtLink to="/devis" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-500 text-white font-semibold rounded-lg hover:bg-primary-600 transition-colors text-sm tracking-widest uppercase">
             Demander un devis gratuit
           </NuxtLink>
-          <a href="tel:+262692000000" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-colors text-sm tracking-widest uppercase">
+          <a href="tel:+262692422492" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-colors text-sm tracking-widest uppercase">
             Nous appeler
           </a>
         </div>
 
         <div class="flex flex-wrap justify-center gap-8 mt-12 text-dark-400 text-sm">
-          <span>0692 00 00 00</span>
+          <span>06 92 42 24 92</span>
           <span class="text-dark-700">|</span>
-          <span>contact@ajp-construction.re</span>
+          <span>contact@ajp-construction.fr</span>
           <span class="text-dark-700">|</span>
           <span>La Réunion (974)</span>
         </div>

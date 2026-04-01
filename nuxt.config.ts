@@ -15,6 +15,12 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'AJP Construction — Entreprise tous corps d\'état à La Réunion. Terrassement, VRD, gros œuvre, charpente, couverture et second œuvre.' },
+        { property: 'og:site_name', content: 'AJP Construction' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://www.ajp-construction.fr' },
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://www.ajp-construction.fr' },
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/logo.png' },
