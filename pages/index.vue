@@ -194,9 +194,9 @@
         </div>
 
         <div class="flex flex-wrap justify-center gap-8 mt-12 text-dark-400 text-sm">
-          <span>06 92 42 24 92</span>
+          <a href="tel:+262692422492" class="hover:text-white transition-colors">06 92 42 24 92</a>
           <span class="text-dark-700">|</span>
-          <span>ajc.pedroa@outlook.fr</span>
+          <a href="mailto:ajc.pedroa@outlook.fr" class="hover:text-white transition-colors">ajc.pedroa@outlook.fr</a>
           <span class="text-dark-700">|</span>
           <span>La Réunion (974)</span>
         </div>

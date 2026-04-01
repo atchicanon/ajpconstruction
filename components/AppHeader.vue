@@ -91,8 +91,8 @@ const mobileMenuOpen = ref(false)
 
 const navLinks = [
   { to: '/', label: 'Accueil' },
-  { to: '/#expertise', label: 'Expertise' },
   { to: '/realisations', label: 'Réalisations' },
+  { to: '/#expertise', label: 'Expertise' },
   { to: '/devis', label: 'Contact' },
 ]
 </script>

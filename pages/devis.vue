@@ -217,7 +217,7 @@
                   </div>
                   <div>
                     <p class="font-medium text-dark-900">Email</p>
-                    <p class="text-dark-400 text-sm">contact@ajp-construction.fr</p>
+                    <a href="mailto:ajc.pedroa@outlook.fr" class="text-dark-400 text-sm hover:text-primary-500 transition-colors">ajc.pedroa@outlook.fr</a>
                   </div>
                 </div>
 
