@@ -13,7 +13,7 @@
             v-for="link in navLinks"
             :key="link.to"
             :to="link.to"
-            class="text-dark-300 hover:text-white font-medium text-sm transition-colors"
+            class="text-dark-300 hover:text-white text-xs tracking-widest uppercase font-medium transition-colors"
             active-class="text-white"
           >
             {{ link.label }}
@@ -22,8 +22,14 @@
 
         <!-- CTA -->
         <div class="hidden md:block">
-          <NuxtLink to="/devis" class="btn-nav-devis">
+          <NuxtLink
+            to="/devis"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 hover:bg-primary-600 text-white text-xs font-bold tracking-widest uppercase rounded transition-colors duration-150 whitespace-nowrap"
+          >
             Devis gratuit
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </NuxtLink>
         </div>
 
@@ -64,7 +70,11 @@
           >
             {{ link.label }}
           </NuxtLink>
-          <NuxtLink to="/devis" class="btn-nav-devis">
+          <NuxtLink
+            to="/devis"
+            class="mt-2 inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary-500 hover:bg-primary-600 text-white text-xs font-bold tracking-widest uppercase rounded transition-colors duration-150 w-full"
+            @click="mobileMenuOpen = false"
+          >
             Devis gratuit
           </NuxtLink>
         </nav>

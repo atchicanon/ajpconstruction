@@ -1,49 +1,65 @@
 <template>
   <div class="bg-dark-900 text-white">
     <!-- HERO -->
-    <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section class="relative min-h-[95vh] flex items-center overflow-hidden">
+      <!-- Background image -->
       <div class="absolute inset-0">
         <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80" alt="Chantier" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-dark-900/50" />
+        <div class="absolute inset-0 bg-gradient-to-r from-dark-900/90 via-dark-900/70 to-dark-900/30" />
       </div>
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <!-- Logo grand -->
+      <!-- Diagonal structural line -->
+      <div class="absolute top-0 right-[30%] bottom-0 w-px bg-white/5 -rotate-6 origin-top" />
 
-        <div class="max-w-3xl">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-500/10 border border-primary-500/30 rounded-full text-sm font-medium text-primary-400 mb-8">
-            Tous corps d'état — La Réunion
+      <!-- Red vertical accent bar -->
+      <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500" />
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+        <div class="max-w-3xl pl-6">
+          <!-- Badge -->
+          <div class="hero-badge flex items-center gap-3 mb-8">
+            <div class="h-px w-8 bg-gold-500" />
+            <span class="section-label text-gold-500">Tous corps d'état — La Réunion</span>
           </div>
 
-          <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-8">
-            Construisons<br/>ensemble
-            <span class="text-primary-500"> votre<br/>projet</span>
+          <!-- Animated red line -->
+          <div class="hero-line h-0.5 bg-primary-500 w-24 mb-6" />
+
+          <!-- Title -->
+          <h1 class="font-display leading-none mb-8">
+            <span class="hero-title-1 block text-6xl md:text-8xl lg:text-9xl text-white tracking-wide">
+              CONSTRUISONS
+            </span>
+            <span class="hero-title-2 block text-6xl md:text-8xl lg:text-9xl text-primary-500 tracking-wide">
+              ENSEMBLE
+            </span>
           </h1>
 
-          <p class="text-xl text-dark-300 mb-10 leading-relaxed max-w-xl">
+          <p class="hero-body text-lg text-dark-300 mb-10 leading-relaxed max-w-xl font-light">
             Du terrassement aux finitions, AJP Construction vous accompagne sur tous vos travaux de bâtiment à La Réunion.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-4">
-            <NuxtLink to="/devis" class="btn-primary text-base px-7 py-3.5 flex items-center justify-center gap-2">
+          <div class="hero-cta flex flex-col sm:flex-row gap-4">
+            <NuxtLink to="/devis" class="btn-primary text-base px-7 py-3.5 flex items-center justify-center gap-2 tracking-wide uppercase text-sm">
               Demander un devis gratuit
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </NuxtLink>
-            <a href="#realisations" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/20 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+            <a href="#realisations" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/20 text-white font-medium rounded-lg hover:bg-white/10 transition-colors text-sm tracking-wide uppercase">
               Voir nos réalisations
             </a>
           </div>
         </div>
       </div>
 
-      <div class="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-dark-900/60 backdrop-blur-sm">
+      <!-- Stats bar -->
+      <div class="hero-stats absolute bottom-0 left-0 right-0 border-t border-white/10 bg-dark-900/80 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-3 divide-x divide-white/10">
             <div v-for="stat in stats" :key="stat.label" class="py-6 px-8 text-center">
-              <div class="text-3xl font-extrabold text-white">{{ stat.value }}</div>
-              <div class="text-dark-400 text-sm mt-1">{{ stat.label }}</div>
+              <div class="font-display text-4xl text-white tracking-wide">{{ stat.value }}</div>
+              <div class="text-dark-400 text-xs mt-1 tracking-widest uppercase font-medium">{{ stat.label }}</div>
             </div>
           </div>
         </div>
@@ -53,31 +69,52 @@
     <!-- RÉALISATIONS aperçu -->
     <section id="realisations" class="py-24 bg-dark-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">
-          Nos <span class="text-primary-500">réalisations</span>
-        </h2>
+        <div class="flex items-end justify-between mb-16">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="h-px w-8 bg-primary-500" />
+              <span class="section-label">Projets récents</span>
+            </div>
+            <h2 class="font-display text-5xl md:text-6xl text-white tracking-wide leading-none">
+              NOS <span class="text-primary-500">RÉALISATIONS</span>
+            </h2>
+          </div>
+          <NuxtLink to="/realisations" class="hidden md:flex items-center gap-2 text-sm text-dark-300 hover:text-white transition-colors tracking-wider uppercase font-medium">
+            Tout voir
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </NuxtLink>
+        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="md:col-span-2 md:row-span-2 relative group rounded-2xl overflow-hidden aspect-[4/3] md:aspect-auto cursor-pointer" @click="goToCategory('Gros œuvre')">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80" alt="Construction" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl aspect-[4/3] md:aspect-auto cursor-pointer" @click="goToCategory('Gros œuvre')">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80" alt="Construction" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-900/20 to-transparent" />
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <div class="h-px w-8 bg-primary-500 mb-3" />
+              <div class="font-display text-2xl text-white tracking-wide">CONSTRUCTION NEUVE</div>
+            </div>
+          </div>
+
+          <div class="relative group overflow-hidden rounded-xl aspect-[4/3] cursor-pointer" @click="goToCategory('Terrassement & VRD')">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Terrassement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 to-transparent" />
-            <div class="absolute bottom-6 left-6 text-white font-bold text-xl">Construction neuve</div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <div class="font-display text-lg text-white tracking-wide">TERRASSEMENT</div>
+            </div>
           </div>
 
-          <div class="relative group rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer" @click="goToCategory('Terrassement & VRD')">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Terrassement" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-900/70 to-transparent" />
-            <div class="absolute bottom-4 left-4 text-white font-bold">Terrassement</div>
-          </div>
-
-          <div class="relative group rounded-2xl overflow-hidden aspect-[4/3] cursor-pointer" @click="goToCategory('Charpente & Couverture')">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Toiture" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
-            <div class="absolute inset-0 bg-gradient-to-t from-dark-900/70 to-transparent" />
-            <div class="absolute bottom-4 left-4 text-white font-bold">Toiture</div>
+          <div class="relative group overflow-hidden rounded-xl aspect-[4/3] cursor-pointer" @click="goToCategory('Charpente & Couverture')">
+            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Toiture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 to-transparent" />
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <div class="font-display text-lg text-white tracking-wide">TOITURE & COUVERTURE</div>
+            </div>
           </div>
         </div>
 
-        <div class="text-center mt-10">
+        <div class="text-center mt-8 md:hidden">
           <NuxtLink to="/realisations" class="btn-primary px-8 py-3">
             Voir toutes nos réalisations
           </NuxtLink>
@@ -86,24 +123,36 @@
     </section>
 
     <!-- EXPERTISE -->
-    <section id="expertise" class="py-24">
+    <section id="expertise" class="py-24 relative diagonal-accent">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">
-          Nos domaines <span class="text-primary-500">d'expertise</span>
-        </h2>
+        <div class="mb-16">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px w-8 bg-primary-500" />
+            <span class="section-label">Savoir-faire</span>
+          </div>
+          <h2 class="font-display text-5xl md:text-6xl text-white tracking-wide leading-none">
+            DOMAINES <span class="text-primary-500">D'EXPERTISE</span>
+          </h2>
+        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div v-for="service in services" :key="service.title" class="bg-dark-800 rounded-2xl p-7 border border-dark-700">
-            <div class="flex items-start gap-5">
-              <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 text-2xl" :class="service.iconBg">
-                {{ service.icon }}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-dark-700">
+          <div
+            v-for="(service, i) in services"
+            :key="service.title"
+            class="bg-dark-900 p-8 hover:bg-dark-800 transition-colors group"
+          >
+            <div class="flex items-start gap-6">
+              <div class="shrink-0">
+                <div class="font-display text-5xl text-dark-700 group-hover:text-primary-500/30 transition-colors leading-none">
+                  0{{ i + 1 }}
+                </div>
               </div>
-              <div class="flex-1">
-                <h3 class="text-xl font-bold mb-2">{{ service.title }}</h3>
+              <div class="flex-1 pt-1">
+                <h3 class="font-display text-2xl text-white tracking-wide mb-3 group-hover:text-primary-400 transition-colors">{{ service.title.toUpperCase() }}</h3>
                 <p class="text-dark-400 text-sm leading-relaxed mb-4">{{ service.description }}</p>
-                <ul class="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                <ul class="grid grid-cols-2 gap-x-4 gap-y-2">
                   <li v-for="item in service.items" :key="item" class="flex items-center gap-2 text-sm text-dark-300">
-                    <span class="w-1.5 h-1.5 rounded-full bg-primary-500" />
+                    <div class="w-1 h-1 bg-primary-500 shrink-0" />
                     {{ item }}
                   </li>
                 </ul>
@@ -114,27 +163,42 @@
       </div>
     </section>
 
-    <!-- CTA ROUGE -->
-    <section id="contact" class="relative overflow-hidden bg-primary-500 py-24">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-primary-400/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+    <!-- CTA -->
+    <section id="contact" class="relative overflow-hidden bg-dark-900 py-28 border-t border-white/5">
+      <!-- Background accent -->
+      <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-transparent to-transparent" />
+      <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+
       <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6">Un projet en tête ?</h2>
-        <p class="text-xl text-primary-100 mb-12 max-w-2xl mx-auto">
+        <div class="flex items-center justify-center gap-3 mb-6">
+          <div class="h-px w-12 bg-gold-500" />
+          <span class="section-label text-gold-500">Passons à l'action</span>
+          <div class="h-px w-12 bg-gold-500" />
+        </div>
+
+        <h2 class="font-display text-6xl md:text-8xl text-white mb-6 tracking-wide leading-none">
+          UN PROJET<br/><span class="text-primary-500">EN TÊTE ?</span>
+        </h2>
+
+        <p class="text-lg text-dark-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
           Contactez-nous pour obtenir un devis gratuit et sans engagement. Nous intervenons sur toute l'île de La Réunion.
         </p>
+
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <NuxtLink to="/devis" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary-500 font-bold rounded-lg text-lg hover:bg-gray-100 transition-colors">
+          <NuxtLink to="/devis" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary-500 text-white font-semibold rounded-lg hover:bg-primary-600 transition-colors text-sm tracking-widest uppercase">
             Demander un devis gratuit
           </NuxtLink>
-          <a href="tel:+262692000000" class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white/40 text-white font-bold rounded-lg hover:bg-white/10 transition-colors">
+          <a href="tel:+262692000000" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-colors text-sm tracking-widest uppercase">
             Nous appeler
           </a>
         </div>
 
-        <div class="flex flex-wrap justify-center gap-8 mt-12 text-primary-100 text-sm">
-          <span class="flex items-center gap-2">0692 00 00 00</span>
-          <span class="flex items-center gap-2">contact@ajp-construction.re</span>
-          <span class="flex items-center gap-2">La Réunion (974)</span>
+        <div class="flex flex-wrap justify-center gap-8 mt-12 text-dark-400 text-sm">
+          <span>0692 00 00 00</span>
+          <span class="text-dark-700">|</span>
+          <span>contact@ajp-construction.re</span>
+          <span class="text-dark-700">|</span>
+          <span>La Réunion (974)</span>
         </div>
       </div>
     </section>
@@ -145,36 +209,28 @@
 const router = useRouter()
 
 const stats = [
-  { value: '15+', label: 'Années' },
-  { value: '500+', label: 'Projets' },
-  { value: '100%', label: 'Satisfaction' },
+  { value: '15+', label: 'Années d\'expérience' },
+  { value: '500+', label: 'Projets réalisés' },
+  { value: '100%', label: 'Satisfaction client' },
 ]
 
 const services = [
   {
-    icon: '⛏️',
-    iconBg: 'bg-orange-500/20',
     title: 'Terrassement & VRD',
     description: 'Préparation de terrain, voirie et réseaux divers pour vos projets.',
     items: ['Décapage', 'Fouilles', 'VRD', 'Assainissement'],
   },
   {
-    icon: '🏗️',
-    iconBg: 'bg-red-500/20',
     title: 'Gros œuvre',
     description: 'Fondations, maçonnerie, structure béton armé.',
     items: ['Fondations', 'Maçonnerie', 'Dallage', 'Béton armé'],
   },
   {
-    icon: '🏠',
-    iconBg: 'bg-sky-500/20',
     title: 'Charpente & Couverture',
     description: 'Charpente bois ou métal, couverture et étanchéité.',
     items: ['Charpente bois', 'Charpente métal', 'Couverture', 'Étanchéité'],
   },
   {
-    icon: '🔧',
-    iconBg: 'bg-emerald-500/20',
     title: 'Second œuvre',
     description: 'Plomberie, électricité, peinture, carrelage.',
     items: ['Plomberie', 'Électricité', 'Peinture', 'Carrelage'],

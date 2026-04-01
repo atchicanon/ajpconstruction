@@ -34,9 +34,15 @@ export default {
           800: '#1a1a1a',
           900: '#0d0d0d',
         },
+        gold: {
+          400: '#E8B42A',
+          500: '#D4A017',
+          600: '#B8880E',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Barlow', 'sans-serif'],
+        display: ['Bebas Neue', 'sans-serif'],
       },
     },
   },
