@@ -45,6 +45,7 @@ export async function saveHomepageConfig(config: HomepageConfig) {
   await put(BLOB_KEY, JSON.stringify(config), {
     access: 'public',
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType: 'application/json',
   })
 }

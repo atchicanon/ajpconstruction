@@ -22,7 +22,8 @@ export default defineEventHandler(async (event) => {
     if (file.name === 'folder' || !file.filename || !file.data) continue
 
     const timestamp = Math.floor(Date.now() / 1000).toString()
-    const paramsToSign = `folder=${folder}&timestamp=${timestamp}`
+    const publicId = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+    const paramsToSign = `folder=${folder}&public_id=${publicId}&timestamp=${timestamp}`
     const signature = createHash('sha1')
       .update(paramsToSign + apiSecret)
       .digest('hex')
@@ -30,6 +31,7 @@ export default defineEventHandler(async (event) => {
     const body = new FormData()
     body.append('file', new Blob([file.data], { type: file.type || 'image/jpeg' }), file.filename)
     body.append('folder', folder)
+    body.append('public_id', publicId)
     body.append('timestamp', timestamp)
     body.append('api_key', apiKey)
     body.append('signature', signature)

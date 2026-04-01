@@ -23,6 +23,7 @@ export async function saveRealisations(data: Realisation[]) {
   await put(BLOB_KEY, JSON.stringify(data), {
     access: 'public',
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType: 'application/json',
   })
 }

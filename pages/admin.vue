@@ -237,7 +237,7 @@
           <div class="relative bg-dark-800 rounded-2xl w-full max-w-2xl border border-dark-700 shadow-2xl mb-20">
             <!-- Header -->
             <div class="flex items-center justify-between p-6 border-b border-dark-700">
-              <h2 class="text-xl font-bold">{{ editingReal ? 'Modifier' : 'Ajouter' }} une réalisation</h2>
+              <h2 class="text-xl font-bold text-white">{{ editingReal ? 'Modifier' : 'Ajouter' }} une réalisation</h2>
               <button @click="showModal = false" class="p-2 hover:bg-dark-700 rounded-lg transition-colors">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
