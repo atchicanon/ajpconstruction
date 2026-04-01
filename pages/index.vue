@@ -4,7 +4,7 @@
     <section class="relative min-h-[95vh] flex items-center overflow-hidden">
       <!-- Background image -->
       <div class="absolute inset-0">
-        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80" alt="Chantier" class="w-full h-full object-cover" />
+        <img :src="homepage.heroImage" alt="Chantier" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-r from-dark-900/90 via-dark-900/70 to-dark-900/30" />
       </div>
 
@@ -88,28 +88,28 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl aspect-[4/3] md:aspect-auto cursor-pointer" @click="goToCategory('Gros œuvre')">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80" alt="Construction" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl aspect-[4/3] md:aspect-auto cursor-pointer" @click="goToCategory(homepage.cards[0].category)">
+            <img :src="homepage.cards[0].image" :alt="homepage.cards[0].label" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-900/20 to-transparent" />
             <div class="absolute bottom-0 left-0 right-0 p-6">
               <div class="h-px w-8 bg-primary-500 mb-3" />
-              <div class="font-display text-2xl text-white tracking-wide">CONSTRUCTION NEUVE</div>
+              <div class="font-display text-2xl text-white tracking-wide">{{ homepage.cards[0].label.toUpperCase() }}</div>
             </div>
           </div>
 
-          <div class="relative group overflow-hidden rounded-xl aspect-[4/3] cursor-pointer" @click="goToCategory('Terrassement & VRD')">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Terrassement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="relative group overflow-hidden rounded-xl aspect-[4/3] cursor-pointer" @click="goToCategory(homepage.cards[1].category)">
+            <img :src="homepage.cards[1].image" :alt="homepage.cards[1].label" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 to-transparent" />
             <div class="absolute bottom-0 left-0 right-0 p-4">
-              <div class="font-display text-lg text-white tracking-wide">TERRASSEMENT</div>
+              <div class="font-display text-lg text-white tracking-wide">{{ homepage.cards[1].label.toUpperCase() }}</div>
             </div>
           </div>
 
-          <div class="relative group overflow-hidden rounded-xl aspect-[4/3] cursor-pointer" @click="goToCategory('Charpente & Couverture')">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Toiture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="relative group overflow-hidden rounded-xl aspect-[4/3] cursor-pointer" @click="goToCategory(homepage.cards[2].category)">
+            <img :src="homepage.cards[2].image" :alt="homepage.cards[2].label" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 to-transparent" />
             <div class="absolute bottom-0 left-0 right-0 p-4">
-              <div class="font-display text-lg text-white tracking-wide">TOITURE & COUVERTURE</div>
+              <div class="font-display text-lg text-white tracking-wide">{{ homepage.cards[2].label.toUpperCase() }}</div>
             </div>
           </div>
         </div>
@@ -207,6 +207,21 @@
 
 <script setup lang="ts">
 const router = useRouter()
+
+interface HomepageConfig {
+  heroImage: string
+  cards: Array<{ image: string; label: string; category: string }>
+}
+
+const { data: homepageData } = await useFetch<HomepageConfig>('/api/homepage')
+const homepage = computed(() => homepageData.value ?? {
+  heroImage: '',
+  cards: [
+    { image: '', label: 'Construction neuve', category: 'Gros œuvre' },
+    { image: '', label: 'Terrassement', category: 'Terrassement & VRD' },
+    { image: '', label: 'Toiture & Couverture', category: 'Charpente & Couverture' },
+  ],
+})
 
 const stats = [
   { value: '15+', label: 'Années d\'expérience' },

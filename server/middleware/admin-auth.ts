@@ -5,6 +5,7 @@ export default defineEventHandler((event) => {
   const protectedPaths = [
     '/api/realisations',
     '/api/upload',
+    '/api/homepage',
   ]
 
   const isProtected = protectedPaths.some(p => url.pathname.startsWith(p))

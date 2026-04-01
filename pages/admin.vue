@@ -45,6 +45,90 @@
       </header>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Tabs -->
+        <div class="flex gap-1 mb-8 bg-dark-800 p-1 rounded-xl w-fit border border-dark-700">
+          <button
+            @click="activeTab = 'realisations'"
+            class="px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+            :class="activeTab === 'realisations' ? 'bg-primary-500 text-white' : 'text-dark-400 hover:text-white'"
+          >
+            Réalisations
+          </button>
+          <button
+            @click="activeTab = 'homepage'"
+            class="px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+            :class="activeTab === 'homepage' ? 'bg-primary-500 text-white' : 'text-dark-400 hover:text-white'"
+          >
+            Page d'accueil
+          </button>
+        </div>
+
+        <!-- ── TAB HOMEPAGE ── -->
+        <div v-if="activeTab === 'homepage'" class="space-y-6">
+          <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-bold">Page d'accueil</h2>
+            <button @click="saveHomepage" :disabled="homepageSaving" class="btn-primary text-sm disabled:opacity-50">
+              {{ homepageSaving ? 'Enregistrement...' : 'Enregistrer' }}
+            </button>
+          </div>
+
+          <!-- Hero -->
+          <div class="bg-dark-800 rounded-xl border border-dark-700 p-6">
+            <h3 class="font-semibold mb-4">Photo du héro (fond principal)</h3>
+            <div class="flex gap-4 items-start">
+              <div class="w-48 aspect-video rounded-lg overflow-hidden bg-dark-700 shrink-0">
+                <img v-if="homepageForm.heroImage" :src="homepageForm.heroImage" alt="Hero" class="w-full h-full object-cover" />
+                <div v-else class="w-full h-full flex items-center justify-center text-dark-500 text-sm">Aucune photo</div>
+              </div>
+              <div class="flex-1">
+                <div
+                  class="border-2 border-dashed border-dark-600 rounded-xl p-6 text-center hover:border-primary-500/50 transition-colors cursor-pointer"
+                  @click="triggerUpload('hero')"
+                >
+                  <p class="text-dark-400 text-sm"><span class="text-primary-400 font-medium">Cliquez</span> pour changer la photo</p>
+                </div>
+                <input ref="heroInput" type="file" accept="image/*" class="hidden" @change="handleHomepageUpload('hero', $event)" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Cards aperçu -->
+          <div class="bg-dark-800 rounded-xl border border-dark-700 p-6">
+            <h3 class="font-semibold mb-4">Cartes aperçu réalisations</h3>
+            <div class="space-y-4">
+              <div v-for="(card, i) in homepageForm.cards" :key="i" class="flex gap-4 items-start p-4 bg-dark-700 rounded-lg">
+                <div class="w-32 aspect-video rounded-lg overflow-hidden bg-dark-600 shrink-0">
+                  <img v-if="card.image" :src="card.image" :alt="card.label" class="w-full h-full object-cover" />
+                  <div v-else class="w-full h-full flex items-center justify-center text-dark-500 text-xs">Vide</div>
+                </div>
+                <div class="flex-1 space-y-2">
+                  <input
+                    v-model="card.label"
+                    class="w-full px-3 py-2 bg-dark-600 border border-dark-500 rounded-lg text-white text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    placeholder="Label affiché"
+                  />
+                  <select
+                    v-model="card.category"
+                    class="w-full px-3 py-2 bg-dark-600 border border-dark-500 rounded-lg text-white text-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  >
+                    <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
+                  </select>
+                  <button
+                    type="button"
+                    class="text-xs text-primary-400 hover:text-primary-300 transition-colors"
+                    @click="triggerUpload('card-' + i)"
+                  >
+                    Changer la photo
+                  </button>
+                  <input :ref="el => cardInputs[i] = el as HTMLInputElement" type="file" accept="image/*" class="hidden" @change="handleHomepageUpload('card-' + i, $event)" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── TAB REALISATIONS ── -->
+        <div v-else>
         <!-- Stats -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <div class="bg-dark-800 rounded-xl p-6 border border-dark-700">
@@ -134,6 +218,7 @@
             </div>
           </div>
         </div>
+        </div> <!-- end tab realisations -->
       </div>
     </div>
 
@@ -302,6 +387,7 @@ async function login() {
     await $fetch('/api/auth/login', { method: 'POST', body: { password: password.value } })
     authenticated.value = true
     loadRealisations()
+    loadHomepage()
   } catch {
     loginError.value = true
   } finally {
@@ -313,6 +399,69 @@ async function logout() {
   await $fetch('/api/auth/logout', { method: 'POST' })
   authenticated.value = false
   password.value = ''
+}
+
+// Tabs
+const activeTab = ref<'realisations' | 'homepage'>('realisations')
+
+// Homepage
+interface HomepageCard { image: string; label: string; category: string }
+interface HomepageConfig { heroImage: string; cards: HomepageCard[] }
+
+const homepageForm = reactive<HomepageConfig>({
+  heroImage: '',
+  cards: [
+    { image: '', label: 'Construction neuve', category: 'Gros œuvre' },
+    { image: '', label: 'Terrassement', category: 'Terrassement & VRD' },
+    { image: '', label: 'Toiture & Couverture', category: 'Charpente & Couverture' },
+  ],
+})
+const homepageSaving = ref(false)
+const heroInput = ref<HTMLInputElement | null>(null)
+const cardInputs = ref<HTMLInputElement[]>([])
+
+async function loadHomepage() {
+  const data = await $fetch<HomepageConfig>('/api/homepage')
+  homepageForm.heroImage = data.heroImage
+  homepageForm.cards = data.cards
+}
+
+async function saveHomepage() {
+  homepageSaving.value = true
+  try {
+    await $fetch('/api/homepage', { method: 'PUT', body: { ...homepageForm, cards: [...homepageForm.cards] } })
+  } finally {
+    homepageSaving.value = false
+  }
+}
+
+function triggerUpload(target: string) {
+  if (target === 'hero') {
+    heroInput.value?.click()
+  } else {
+    const i = parseInt(target.replace('card-', ''))
+    cardInputs.value[i]?.click()
+  }
+}
+
+async function handleHomepageUpload(target: string, e: Event) {
+  const input = e.target as HTMLInputElement
+  if (!input.files?.length) return
+
+  const formData = new FormData()
+  formData.append('folder', 'homepage')
+  formData.append('files', input.files[0])
+
+  const result = await $fetch<{ files: string[] }>('/api/upload', { method: 'POST', body: formData })
+  const url = result.files[0]
+
+  if (target === 'hero') {
+    homepageForm.heroImage = url
+  } else {
+    const i = parseInt(target.replace('card-', ''))
+    homepageForm.cards[i].image = url
+  }
+  input.value = ''
 }
 
 // Data
