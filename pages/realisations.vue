@@ -156,19 +156,19 @@
             <!-- Content -->
             <div class="p-8">
               <div class="flex items-center gap-3 mb-4">
-                <span class="px-3 py-1 bg-primary-500/10 text-primary-400 rounded-full text-sm font-medium">
+                <span class="px-3 py-1 bg-primary-500/20 text-primary-400 rounded-full text-sm font-medium">
                   {{ selectedProject.category }}
                 </span>
-                <span class="text-dark-400 text-sm">{{ selectedProject.year }}</span>
-                <span class="text-dark-400 text-sm flex items-center gap-1">
+                <span class="text-dark-300 text-sm">{{ selectedProject.year }}</span>
+                <span class="text-dark-300 text-sm flex items-center gap-1">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   </svg>
                   {{ selectedProject.location }}
                 </span>
               </div>
-              <h2 class="text-2xl font-bold mb-4">{{ selectedProject.title }}</h2>
-              <p class="text-dark-400 leading-relaxed">{{ selectedProject.description }}</p>
+              <h2 class="text-2xl font-bold text-white mb-4">{{ selectedProject.title }}</h2>
+              <p class="text-dark-200 leading-relaxed">{{ selectedProject.description }}</p>
 
               <!-- Thumbnails grid -->
               <div v-if="selectedProject.images.length > 1" class="grid grid-cols-4 sm:grid-cols-6 gap-2 mt-6">
@@ -184,7 +184,7 @@
               </div>
 
               <div class="mt-8">
-                <NuxtLink to="/devis" class="btn-primary glow-red" @click="selectedProject = null">
+                <NuxtLink to="/devis" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-bold text-sm tracking-widest uppercase rounded-lg transition-colors shadow-lg" @click="selectedProject = null">
                   Un projet similaire ? Demandez un devis
                 </NuxtLink>
               </div>
