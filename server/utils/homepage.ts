@@ -1,4 +1,4 @@
-import { put, list } from '@vercel/blob'
+import { put, list, del } from '@vercel/blob'
 
 export interface HomepageCard {
   image: string
@@ -11,8 +11,7 @@ export interface HomepageConfig {
   cards: HomepageCard[]
 }
 
-const BLOB_KEY = 'data/homepage.json'
-let cachedUrl: string | null = null
+const BLOB_PREFIX = 'data/homepage'
 
 const DEFAULT_CONFIG: HomepageConfig = {
   heroImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80',
@@ -36,23 +35,26 @@ const DEFAULT_CONFIG: HomepageConfig = {
 }
 
 export async function getHomepageConfig(): Promise<HomepageConfig> {
-  if (!cachedUrl) {
-    const { blobs } = await list({ prefix: BLOB_KEY, limit: 1 })
-    if (!blobs.length) return DEFAULT_CONFIG
-    cachedUrl = blobs[0].url
-  }
-  const res = await fetch(`${cachedUrl}?t=${Date.now()}`, { cache: 'no-store' })
-  if (!res.ok) { cachedUrl = null; return DEFAULT_CONFIG }
+  const { blobs } = await list({ prefix: BLOB_PREFIX })
+  if (!blobs.length) return DEFAULT_CONFIG
+  const latest = blobs.sort(
+    (a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
+  )[0]
+  const res = await fetch(latest.url)
+  if (!res.ok) return DEFAULT_CONFIG
   return res.json()
 }
 
 export async function saveHomepageConfig(config: HomepageConfig) {
-  const blob = await put(BLOB_KEY, JSON.stringify(config), {
+  const { blobs: existing } = await list({ prefix: BLOB_PREFIX })
+
+  await put(`${BLOB_PREFIX}.json`, JSON.stringify(config), {
     access: 'public',
-    addRandomSuffix: false,
-    allowOverwrite: true,
+    addRandomSuffix: true,
     contentType: 'application/json',
-    cacheControlMaxAge: 0,
   })
-  cachedUrl = blob.url
+
+  if (existing.length > 0) {
+    await Promise.all(existing.map(b => del(b.url)))
+  }
 }

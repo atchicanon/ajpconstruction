@@ -1,4 +1,4 @@
-import { put, list } from '@vercel/blob'
+import { put, list, del } from '@vercel/blob'
 
 export interface Realisation {
   id: string
@@ -10,29 +10,31 @@ export interface Realisation {
   year: string
 }
 
-const BLOB_KEY = 'data/realisations.json'
-let cachedUrl: string | null = null
+const BLOB_PREFIX = 'data/realisations'
 
 export async function getRealisations(): Promise<Realisation[]> {
-  if (!cachedUrl) {
-    const { blobs } = await list({ prefix: BLOB_KEY, limit: 1 })
-    if (!blobs.length) return []
-    cachedUrl = blobs[0].url
-  }
-  const res = await fetch(`${cachedUrl}?t=${Date.now()}`, { cache: 'no-store' })
-  if (!res.ok) { cachedUrl = null; return [] }
+  const { blobs } = await list({ prefix: BLOB_PREFIX })
+  if (!blobs.length) return []
+  const latest = blobs.sort(
+    (a, b) => new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
+  )[0]
+  const res = await fetch(latest.url)
+  if (!res.ok) return []
   return res.json()
 }
 
 export async function saveRealisations(data: Realisation[]) {
-  const blob = await put(BLOB_KEY, JSON.stringify(data), {
+  const { blobs: existing } = await list({ prefix: BLOB_PREFIX })
+
+  await put(`${BLOB_PREFIX}.json`, JSON.stringify(data), {
     access: 'public',
-    addRandomSuffix: false,
-    allowOverwrite: true,
+    addRandomSuffix: true,
     contentType: 'application/json',
-    cacheControlMaxAge: 0,
   })
-  cachedUrl = blob.url
+
+  if (existing.length > 0) {
+    await Promise.all(existing.map(b => del(b.url)))
+  }
 }
 
 export function generateId(title: string): string {
