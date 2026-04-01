@@ -490,7 +490,7 @@ const totalPhotos = computed(() => realisations.value.reduce((sum, r) => sum + r
 const uniqueCategories = computed(() => new Set(realisations.value.map(r => r.category)).size)
 
 async function loadRealisations() {
-  realisations.value = await $fetch<Realisation[]>('/api/realisations')
+  realisations.value = await $fetch<Realisation[]>('/api/realisations', { query: { t: Date.now() } })
 }
 
 // Modal

@@ -11,21 +11,27 @@ export interface Realisation {
 }
 
 const BLOB_KEY = 'data/realisations.json'
+let cachedUrl: string | null = null
 
 export async function getRealisations(): Promise<Realisation[]> {
-  const { blobs } = await list({ prefix: BLOB_KEY, limit: 1 })
-  if (!blobs.length) return []
-  const res = await fetch(blobs[0].url)
+  if (!cachedUrl) {
+    const { blobs } = await list({ prefix: BLOB_KEY, limit: 1 })
+    if (!blobs.length) return []
+    cachedUrl = blobs[0].url
+  }
+  const res = await fetch(`${cachedUrl}?t=${Date.now()}`, { cache: 'no-store' })
+  if (!res.ok) { cachedUrl = null; return [] }
   return res.json()
 }
 
 export async function saveRealisations(data: Realisation[]) {
-  await put(BLOB_KEY, JSON.stringify(data), {
+  const blob = await put(BLOB_KEY, JSON.stringify(data), {
     access: 'public',
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: 'application/json',
   })
+  cachedUrl = blob.url
 }
 
 export function generateId(title: string): string {
