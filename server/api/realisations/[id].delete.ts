@@ -1,4 +1,5 @@
 import { getRealisations, saveRealisations } from '../../utils/realisations'
+import { deleteCloudinaryImages } from '../../utils/cloudinary'
 
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
@@ -10,8 +11,9 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 404, message: 'Réalisation non trouvée' })
   }
 
-  realisations.splice(index, 1)
+  const [removed] = realisations.splice(index, 1)
   await saveRealisations(realisations)
+  await deleteCloudinaryImages(removed.images)
 
   return realisations
 })
