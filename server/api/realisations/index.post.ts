@@ -22,5 +22,5 @@ export default defineEventHandler(async (event) => {
   realisations.unshift(newReal)
   await saveRealisations(realisations)
 
-  return newReal
+  return realisations
 })

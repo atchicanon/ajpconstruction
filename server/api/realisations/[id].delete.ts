@@ -13,5 +13,5 @@ export default defineEventHandler(async (event) => {
   realisations.splice(index, 1)
   await saveRealisations(realisations)
 
-  return { success: true }
+  return realisations
 })

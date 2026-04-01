@@ -547,18 +547,19 @@ async function saveRealisation() {
   saving.value = true
   try {
     if (editingReal.value) {
-      await $fetch(`/api/realisations/${editingReal.value.id}`, {
+      const updated = await $fetch<Realisation[]>(`/api/realisations/${editingReal.value.id}`, {
         method: 'PUT',
         body: { ...form },
       })
+      realisations.value = updated
     } else {
-      await $fetch('/api/realisations', {
+      const updated = await $fetch<Realisation[]>('/api/realisations', {
         method: 'POST',
         body: { ...form },
       })
+      realisations.value = updated
     }
     showModal.value = false
-    await loadRealisations()
   } catch (e) {
     console.error('Erreur:', e)
   } finally {
@@ -569,8 +570,8 @@ async function saveRealisation() {
 async function deleteRealisation(real: Realisation) {
   if (!confirm(`Supprimer "${real.title}" ?`)) return
 
-  await $fetch(`/api/realisations/${real.id}`, { method: 'DELETE' })
-  await loadRealisations()
+  const updated = await $fetch<Realisation[]>(`/api/realisations/${real.id}`, { method: 'DELETE' })
+  realisations.value = updated
 }
 
 // Upload

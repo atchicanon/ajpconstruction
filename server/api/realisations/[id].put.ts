@@ -22,5 +22,5 @@ export default defineEventHandler(async (event) => {
   }
 
   await saveRealisations(realisations)
-  return realisations[index]
+  return realisations
 })
