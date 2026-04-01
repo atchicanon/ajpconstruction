@@ -5,7 +5,17 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
+    '@nuxtjs/sitemap',
   ],
+
+  site: {
+    url: 'https://www.ajp-construction.fr',
+    name: 'AJP Construction',
+  },
+
+  sitemap: {
+    strictNuxtContentPaths: false,
+  },
 
   app: {
     head: {
