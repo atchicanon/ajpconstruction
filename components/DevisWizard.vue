@@ -23,18 +23,18 @@
         <p class="text-white font-semibold mb-5 text-lg">
           <span class="text-primary-500 mr-2">01.</span> Quel type de projet ?
         </p>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div class="grid grid-cols-2 gap-3">
           <button
             v-for="type in projectTypes"
             :key="type.value"
-            class="flex flex-col items-center gap-3 p-5 rounded-xl border-2 transition-all duration-200 cursor-pointer text-center group"
+            class="flex flex-col items-center gap-2 p-3 rounded-xl border-2 transition-all duration-200 cursor-pointer text-center group"
             :class="wizard.projectType === type.value
               ? 'border-primary-500 bg-primary-500/10 text-white'
               : 'border-dark-600 bg-dark-700 text-dark-300 hover:border-dark-500 hover:text-white'"
             @click="selectProjectType(type.value)"
           >
-            <span class="text-2xl">{{ type.icon }}</span>
-            <span class="text-sm font-medium leading-tight">{{ type.label }}</span>
+            <span class="text-xl">{{ type.icon }}</span>
+            <span class="text-xs font-medium leading-tight">{{ type.label }}</span>
           </button>
         </div>
       </div>
