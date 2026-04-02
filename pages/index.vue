@@ -208,6 +208,18 @@
 <script setup lang="ts">
 const router = useRouter()
 
+useHead({
+  title: 'AJP Construction — Entreprise BTP tous corps d\'état à La Réunion',
+  meta: [
+    { name: 'description', content: 'AJP Construction — Entreprise de bâtiment tous corps d\'état à La Réunion. Terrassement, gros œuvre, charpente, couverture et second œuvre. Devis gratuit sous 48h. Saint-Denis, Saint-Pierre, Saint-Paul, Le Port.' },
+    { property: 'og:url', content: 'https://www.ajp-construction.fr' },
+    { property: 'og:title', content: 'AJP Construction — Entreprise BTP La Réunion' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://www.ajp-construction.fr' },
+  ],
+})
+
 interface HomepageConfig {
   heroImage: string
   cards: Array<{ image: string; label: string; category: string }>

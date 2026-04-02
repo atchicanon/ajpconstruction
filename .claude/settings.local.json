@@ -9,7 +9,8 @@
       "Bash(curl -s http://localhost:3000/api/realisations)",
       "Bash(taskkill //f //im node.exe)",
       "WebFetch(domain:9jo9gs.atoms.world)",
-      "Bash(npx nuxi:*)"
+      "Bash(npx nuxi:*)",
+      "Bash(ls server/api/realisations*)"
     ]
   },
   "model": "sonnet"

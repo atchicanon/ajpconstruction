@@ -46,5 +46,11 @@
 <script setup lang="ts">
 useHead({
   title: 'Mentions légales — AJP Construction',
+  meta: [
+    { name: 'robots', content: 'noindex, follow' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://www.ajp-construction.fr/mentions-legales' },
+  ],
 })
 </script>

@@ -125,6 +125,11 @@ useHead({
   title: 'À propos — AJP Construction, entreprise BTP La Réunion depuis 15 ans',
   meta: [
     { name: 'description', content: 'AJP Construction, entreprise de bâtiment tous corps d\'état à La Réunion depuis 38 ans. Plus de 500 projets réalisés. Terrassement, maçonnerie, charpente, couverture, second œuvre.' },
+    { property: 'og:url', content: 'https://www.ajp-construction.fr/a-propos' },
+    { property: 'og:title', content: 'À propos — AJP Construction, entreprise BTP La Réunion' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://www.ajp-construction.fr/a-propos' },
   ],
 })
 
