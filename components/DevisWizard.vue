@@ -2,7 +2,7 @@
   <div class="bg-dark-800 rounded-2xl p-8 md:p-10 border border-dark-700">
     <!-- Header -->
     <div class="text-center mb-8">
-      <span class="section-label">Réponse rapide</span>
+      <span class="inline-flex items-center px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-widest">Réponse rapide</span>
       <h2 class="text-2xl md:text-3xl font-display text-white mt-2 tracking-wide">3 QUESTIONS, ON VOUS RAPPELLE</h2>
       <p class="text-dark-300 mt-2 text-sm">Pas de long formulaire. Donnez-nous l'essentiel, on s'occupe du reste.</p>
     </div>

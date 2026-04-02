@@ -9,7 +9,7 @@
           </svg>
         </div>
         <div>
-          <span class="section-label text-xs">Outil gratuit</span>
+          <span class="inline-flex items-center px-3 py-1 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-400 text-xs font-semibold uppercase tracking-widest">Outil gratuit</span>
           <h2 class="text-lg md:text-xl font-display text-white tracking-wide leading-tight">ESTIMEZ VOTRE BUDGET</h2>
         </div>
       </div>
