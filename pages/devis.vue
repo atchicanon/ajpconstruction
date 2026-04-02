@@ -10,13 +10,39 @@
       </div>
     </section>
 
-    <!-- Formulaire -->
-    <section class="py-20">
+    <!-- Rappel rapide + Simulateur -->
+    <section class="bg-dark-900 pb-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+          <!-- Wizard rappel -->
+          <DevisWizard />
+
+          <!-- Simulateur budget -->
+          <div class="flex flex-col gap-4">
+            <BudgetSimulator />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Séparateur OU -->
+    <div class="bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-6 py-6">
+          <div class="flex-1 h-px bg-gray-200"></div>
+          <span class="text-dark-400 font-bold text-sm uppercase tracking-widest shrink-0">Ou remplissez le formulaire complet</span>
+          <div class="flex-1 h-px bg-gray-200"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulaire détaillé -->
+    <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
           <!-- Formulaire principal -->
           <div class="lg:col-span-2">
-            <form @submit.prevent="submitForm" class="space-y-8">
+            <form class="space-y-8" @submit.prevent="submitForm">
               <!-- Informations personnelles -->
               <div>
                 <h2 class="text-xl font-bold text-dark-900 mb-6 flex items-center gap-2">
