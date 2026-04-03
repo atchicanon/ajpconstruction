@@ -14,7 +14,7 @@
       <!-- Red vertical accent bar -->
       <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary-500" />
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-32 sm:py-24 w-full">
         <div class="max-w-3xl pl-6">
           <!-- Badge -->
           <div class="hero-badge flex items-center gap-3 mb-8">
@@ -27,10 +27,10 @@
 
           <!-- Title -->
           <h1 class="font-display leading-none mb-8">
-            <span class="hero-title-1 block text-6xl md:text-8xl lg:text-9xl text-white tracking-wide">
+            <span class="hero-title-1 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-wide">
               CONSTRUISONS
             </span>
-            <span class="hero-title-2 block text-6xl md:text-8xl lg:text-9xl text-primary-500 tracking-wide">
+            <span class="hero-title-2 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-primary-500 tracking-wide">
               ENSEMBLE
             </span>
           </h1>
@@ -57,9 +57,9 @@
       <div class="hero-stats absolute bottom-0 left-0 right-0 border-t border-white/10 bg-dark-900/80 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-3 divide-x divide-white/10">
-            <div v-for="stat in stats" :key="stat.label" class="py-6 px-8 text-center">
-              <div class="font-display text-4xl text-white tracking-wide">{{ stat.value }}</div>
-              <div class="text-dark-400 text-xs mt-1 tracking-widest uppercase font-medium">{{ stat.label }}</div>
+            <div v-for="stat in stats" :key="stat.label" class="py-4 sm:py-6 px-2 sm:px-6 lg:px-8 text-center">
+              <div class="font-display text-3xl sm:text-4xl text-white tracking-wide">{{ stat.value }}</div>
+              <div class="text-dark-400 text-[10px] sm:text-xs mt-1 tracking-normal sm:tracking-widest uppercase font-medium leading-snug">{{ stat.label }}</div>
             </div>
           </div>
         </div>
@@ -67,15 +67,15 @@
     </section>
 
     <!-- RÉALISATIONS aperçu -->
-    <section id="realisations" class="py-24 bg-dark-800">
+    <section id="realisations" class="py-16 md:py-24 bg-dark-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-end justify-between mb-16">
+        <div class="flex items-end justify-between mb-10 md:mb-16">
           <div>
             <div class="flex items-center gap-3 mb-4">
               <div class="h-px w-8 bg-primary-500" />
               <span class="section-label">Projets récents</span>
             </div>
-            <h2 class="font-display text-5xl md:text-6xl text-white tracking-wide leading-none">
+            <h2 class="font-display text-4xl sm:text-5xl md:text-6xl text-white tracking-wide leading-none">
               NOS <span class="text-primary-500">RÉALISATIONS</span>
             </h2>
           </div>
@@ -87,7 +87,7 @@
           </NuxtLink>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 md:h-[520px] gap-3">
           <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl aspect-[4/3] md:aspect-auto cursor-pointer" @click="goToCategory(homepage.cards[0].category)">
             <img :src="homepage.cards[0].image" :alt="homepage.cards[0].label" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-900/20 to-transparent" />
@@ -123,14 +123,14 @@
     </section>
 
     <!-- EXPERTISE -->
-    <section id="expertise" class="py-24 relative diagonal-accent">
+    <section id="expertise" class="py-16 md:py-24 relative diagonal-accent">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-16">
+        <div class="mb-10 md:mb-16">
           <div class="flex items-center gap-3 mb-4">
             <div class="h-px w-8 bg-primary-500" />
             <span class="section-label">Savoir-faire</span>
           </div>
-          <h2 class="font-display text-5xl md:text-6xl text-white tracking-wide leading-none">
+          <h2 class="font-display text-4xl sm:text-5xl md:text-6xl text-white tracking-wide leading-none">
             DOMAINES <span class="text-primary-500">D'EXPERTISE</span>
           </h2>
         </div>
@@ -139,7 +139,7 @@
           <div
             v-for="(service, i) in services"
             :key="service.title"
-            class="bg-dark-900 p-8 hover:bg-dark-800 transition-colors group"
+            class="bg-dark-900 p-5 md:p-8 hover:bg-dark-800 transition-colors group"
           >
             <div class="flex items-start gap-6">
               <div class="shrink-0">
@@ -164,7 +164,7 @@
     </section>
 
     <!-- CTA -->
-    <section id="contact" class="relative overflow-hidden bg-dark-900 py-28 border-t border-white/5">
+    <section id="contact" class="relative overflow-hidden bg-dark-900 py-16 md:py-28 border-t border-white/5">
       <!-- Background accent -->
       <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-transparent to-transparent" />
       <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
@@ -176,7 +176,7 @@
           <div class="h-px w-12 bg-gold-500" />
         </div>
 
-        <h2 class="font-display text-6xl md:text-8xl text-white mb-6 tracking-wide leading-none">
+        <h2 class="font-display text-5xl sm:text-6xl md:text-8xl text-white mb-6 tracking-wide leading-none">
           UN PROJET<br/><span class="text-primary-500">EN TÊTE ?</span>
         </h2>
 
@@ -195,9 +195,9 @@
 
         <div class="flex flex-wrap justify-center gap-8 mt-12 text-dark-400 text-sm">
           <a href="tel:+262692422492" class="hover:text-white transition-colors">06 92 42 24 92</a>
-          <span class="text-dark-700">|</span>
+          <span class="hidden sm:inline text-dark-700">|</span>
           <a href="mailto:ajc.pedroa@outlook.fr" class="hover:text-white transition-colors">ajc.pedroa@outlook.fr</a>
-          <span class="text-dark-700">|</span>
+          <span class="hidden sm:inline text-dark-700">|</span>
           <span>La Réunion (974)</span>
         </div>
       </div>
