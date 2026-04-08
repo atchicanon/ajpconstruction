@@ -372,7 +372,10 @@
 <script setup lang="ts">
 definePageMeta({ layout: false })
 
-useHead({ title: 'Admin — AJP Construction' })
+useHead({
+  title: 'Admin — AJP Construction',
+  meta: [{ name: 'robots', content: 'noindex, nofollow' }],
+})
 
 onMounted(async () => {
   try {

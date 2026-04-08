@@ -19,7 +19,7 @@
           <!-- Badge -->
           <div class="hero-badge flex items-center gap-3 mb-8">
             <div class="h-px w-8 bg-gold-500" />
-            <span class="section-label text-gold-500">Tous corps d'état — La Réunion</span>
+            <span class="section-label text-gold-500">Entreprise de construction — La Réunion (974)</span>
           </div>
 
           <!-- Animated red line -->
@@ -36,7 +36,7 @@
           </h1>
 
           <p class="hero-body text-lg text-dark-300 mb-10 leading-relaxed max-w-xl font-light">
-            Du terrassement aux finitions, AJP Construction vous accompagne sur tous vos travaux de bâtiment à La Réunion.
+            Votre entreprise de construction à La Réunion — du terrassement aux finitions, AJP Construction vous accompagne sur tous vos projets BTP à La Réunion (974).
           </p>
 
           <div class="hero-cta flex flex-col sm:flex-row gap-4">
@@ -163,6 +163,47 @@
       </div>
     </section>
 
+    <!-- SEO Content -->
+    <section class="py-16 md:py-24 bg-dark-800 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="h-px w-8 bg-primary-500" />
+              <span class="section-label">Présence locale</span>
+            </div>
+            <h2 class="font-display text-4xl sm:text-5xl text-white tracking-wide leading-none mb-6">
+              CONSTRUCTION <span class="text-primary-500">LA RÉUNION</span>
+            </h2>
+            <div class="space-y-4 text-dark-300 leading-relaxed">
+              <p>
+                AJP Construction est votre entreprise de construction à La Réunion de confiance. Fort de plus de 10 ans d'expérience dans le BTP réunionnais, nous intervenons sur l'ensemble du territoire de l'île, de Saint-Denis à Saint-Pierre, en passant par Saint-Paul et Le Port.
+              </p>
+              <p>
+                Notre entreprise de construction à La Réunion maîtrise tous les corps de métier : du terrassement à la livraison clé en main. Construction neuve, rénovation ou extension — nos équipes qualifiées garantissent qualité et respect des délais.
+              </p>
+              <p>
+                Faites confiance à AJP Construction pour votre projet de construction à La Réunion. Devis gratuit et personnalisé sous 48h.
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <div class="h-px w-8 bg-primary-500" />
+              <span class="section-label">Zones d'intervention</span>
+            </div>
+            <h3 class="font-display text-2xl text-white tracking-wide mb-6">TOUTE <span class="text-primary-500">L'ÎLE</span></h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div v-for="zone in zones" :key="zone" class="flex items-center gap-2 px-4 py-3 bg-dark-900 border border-dark-700 rounded-lg text-dark-300 text-sm hover:border-primary-500/30 hover:text-white transition-colors">
+                <div class="w-1.5 h-1.5 bg-primary-500 rounded-full shrink-0" />
+                {{ zone }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section id="contact" class="relative overflow-hidden bg-dark-900 py-16 md:py-28 border-t border-white/5">
       <!-- Background accent -->
@@ -209,11 +250,11 @@
 const router = useRouter()
 
 useHead({
-  title: 'AJP Construction — Entreprise BTP tous corps d\'état à La Réunion',
+  title: 'AJP Construction — Entreprise de Construction à La Réunion | BTP 974',
   meta: [
-    { name: 'description', content: 'AJP Construction — Entreprise de bâtiment tous corps d\'état à La Réunion. Terrassement, gros œuvre, charpente, couverture et second œuvre. Devis gratuit sous 48h. Saint-Denis, Saint-Pierre, Saint-Paul, Le Port.' },
+    { name: 'description', content: 'AJP Construction, votre entreprise de construction à La Réunion (974). Terrassement, gros œuvre, charpente, couverture et second œuvre. Devis gratuit sous 48h. Saint-Denis, Saint-Pierre, Saint-Paul, Le Port.' },
     { property: 'og:url', content: 'https://www.ajp-construction.fr' },
-    { property: 'og:title', content: 'AJP Construction — Entreprise BTP La Réunion' },
+    { property: 'og:title', content: 'AJP Construction — Entreprise de Construction à La Réunion' },
   ],
   link: [
     { rel: 'canonical', href: 'https://www.ajp-construction.fr' },
@@ -262,6 +303,12 @@ const services = [
     description: 'Plomberie, électricité, peinture, carrelage.',
     items: ['Plomberie', 'Électricité', 'Peinture', 'Carrelage'],
   },
+]
+
+const zones = [
+  'Saint-Denis', 'Saint-Pierre', 'Saint-Paul', 'Le Port',
+  'Saint-André', 'Saint-Louis', 'La Possession', 'Saint-Benoît',
+  'Saint-Leu', 'Le Tampon',
 ]
 
 function goToCategory(category: string) {
