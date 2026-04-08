@@ -15,27 +15,32 @@ export default defineNuxtConfig({
 
   sitemap: {
     strictNuxtContentPaths: false,
+    exclude: ['/admin'],
   },
 
   app: {
     head: {
-      title: 'AJP Construction — Entreprise BTP tous corps d\'état à La Réunion',
+      title: 'AJP Construction — Entreprise de Construction à La Réunion | BTP 974',
       htmlAttrs: { lang: 'fr' },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'AJP Construction — Entreprise de bâtiment tous corps d\'état à La Réunion. Terrassement, gros œuvre, charpente, couverture et second œuvre. Devis gratuit sous 48h. Saint-Denis, Saint-Pierre, Saint-Paul, Le Port.' },
-        { name: 'keywords', content: 'entreprise BTP La Réunion, construction Réunion, terrassement Réunion, gros oeuvre Réunion, charpente couverture Réunion, maçonnerie Saint-Denis, travaux bâtiment 974, entrepreneur général Réunion, devis construction gratuit' },
+        { name: 'description', content: 'AJP Construction, entreprise de construction à La Réunion (974). Terrassement, gros œuvre, charpente, couverture et second œuvre. Devis gratuit sous 48h. Intervient à Saint-Denis, Saint-Pierre, Saint-Paul, Le Port.' },
+        { name: 'keywords', content: 'construction réunion, entreprise construction réunion, BTP réunion 974, constructeur réunion, gros oeuvre réunion, terrassement réunion, charpente réunion, maçonnerie saint-denis réunion, travaux bâtiment 974, devis construction gratuit réunion' },
+        { name: 'geo.region', content: 'FR-RE' },
+        { name: 'geo.placename', content: 'La Réunion' },
+        { name: 'geo.position', content: '-21.115141;55.536384' },
+        { name: 'ICBM', content: '-21.115141, 55.536384' },
         { property: 'og:site_name', content: 'AJP Construction' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'fr_FR' },
         { property: 'og:url', content: 'https://www.ajp-construction.fr' },
-        { property: 'og:title', content: 'AJP Construction — Entreprise BTP La Réunion' },
-        { property: 'og:description', content: 'Entreprise de bâtiment tous corps d\'état à La Réunion. Terrassement, gros œuvre, charpente, couverture et second œuvre. Devis gratuit sous 48h.' },
+        { property: 'og:title', content: 'AJP Construction — Entreprise de Construction à La Réunion' },
+        { property: 'og:description', content: 'Entreprise de construction à La Réunion (974) tous corps d\'état. Terrassement, gros œuvre, charpente, couverture et second œuvre. Devis gratuit sous 48h.' },
         { property: 'og:image', content: 'https://www.ajp-construction.fr/og-image.jpg' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'AJP Construction — Entreprise BTP La Réunion' },
-        { name: 'twitter:description', content: 'Entreprise de bâtiment tous corps d\'état à La Réunion. Terrassement, gros œuvre, charpente, couverture et second œuvre. Devis gratuit sous 48h.' },
+        { name: 'twitter:title', content: 'AJP Construction — Entreprise de Construction à La Réunion' },
+        { name: 'twitter:description', content: 'Entreprise de construction à La Réunion (974) tous corps d\'état. Terrassement, gros œuvre, charpente, couverture et second œuvre. Devis gratuit sous 48h.' },
         { name: 'twitter:image', content: 'https://www.ajp-construction.fr/og-image.jpg' },
       ],
       link: [
