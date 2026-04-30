@@ -1,7 +1,7 @@
 <template>
   <div class="bg-dark-900 text-white">
     <!-- HERO -->
-    <section class="relative min-h-[95vh] flex items-center overflow-hidden">
+    <section class="relative min-h-[90svh] flex items-center overflow-hidden">
       <!-- Background image -->
       <div class="absolute inset-0">
         <img :src="homepage.heroImage" alt="Chantier" class="w-full h-full object-cover" />
@@ -27,10 +27,11 @@
 
           <!-- Title -->
           <h1 class="font-display leading-none mb-8">
-            <span class="hero-title-1 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-wide">
+            <span class="sr-only">Entreprise de construction tous corps d'état · La Réunion 974</span>
+            <span class="hero-title-1 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-wide" aria-hidden="true">
               CONSTRUISONS
             </span>
-            <span class="hero-title-2 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-primary-500 tracking-wide">
+            <span class="hero-title-2 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-primary-500 tracking-wide" aria-hidden="true">
               ENSEMBLE
             </span>
           </h1>
@@ -177,7 +178,7 @@
             </h2>
             <div class="space-y-4 text-dark-300 leading-relaxed">
               <p>
-                AJP Construction est votre entreprise de construction à La Réunion de confiance. Fort de plus de 10 ans d'expérience dans le BTP réunionnais, nous intervenons sur l'ensemble du territoire de l'île, de Saint-Denis à Saint-Pierre, en passant par Saint-Paul et Le Port.
+                AJP Construction est votre entreprise de construction à La Réunion de confiance. Fort de plus de 38 ans d'expérience dans le BTP réunionnais, nous intervenons sur l'ensemble du territoire de l'île, de Saint-Denis à Saint-Pierre, en passant par Saint-Paul et Le Port.
               </p>
               <p>
                 Notre entreprise de construction à La Réunion maîtrise tous les corps de métier : du terrassement à la livraison clé en main. Construction neuve, rénovation ou extension — nos équipes qualifiées garantissent qualité et respect des délais.
@@ -237,7 +238,7 @@
         <div class="flex flex-wrap justify-center gap-8 mt-12 text-dark-400 text-sm">
           <a href="tel:+262692422492" class="hover:text-white transition-colors">06 92 42 24 92</a>
           <span class="hidden sm:inline text-dark-700">|</span>
-          <a href="mailto:ajc.pedroa@outlook.fr" class="hover:text-white transition-colors">ajc.pedroa@outlook.fr</a>
+          <a href="mailto:contact@ajp-construction.fr" class="hover:text-white transition-colors">contact@ajp-construction.fr</a>
           <span class="hidden sm:inline text-dark-700">|</span>
           <span>La Réunion (974)</span>
         </div>

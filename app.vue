@@ -15,7 +15,7 @@ useHead({
         name: 'AJP Construction',
         url: 'https://www.ajp-construction.fr',
         telephone: '+262692422492',
-        email: 'ajc.pedroa@outlook.fr',
+        email: 'contact@ajp-construction.fr',
         description: 'Entreprise de construction à La Réunion (974) tous corps d\'état. Terrassement, gros œuvre, charpente, couverture et second œuvre.',
         address: {
           '@type': 'PostalAddress',
@@ -79,7 +79,7 @@ useHead({
             name: 'Qu\'est-ce qu\'AJP Construction à La Réunion ?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'AJP Construction est une entreprise de construction à La Réunion (974) spécialisée dans les travaux tous corps d\'état : terrassement VRD, gros œuvre, charpente, couverture et second œuvre. Nous intervenons sur l\'ensemble de l\'île depuis plus de 10 ans.',
+              text: 'AJP Construction est une entreprise de construction à La Réunion (974) spécialisée dans les travaux tous corps d\'état : terrassement VRD, gros œuvre, charpente, couverture et second œuvre. Nous intervenons sur l\'ensemble de l\'île depuis plus de 38 ans.',
             },
           },
           {
