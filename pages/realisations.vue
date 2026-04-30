@@ -16,8 +16,8 @@
     <!-- Filters & Gallery -->
     <section class="py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Filtres par catégorie -->
-        <div class="flex flex-wrap gap-3 justify-center mb-12 animate-on-scroll">
+        <!-- Filtres par catégorie — masqués tant qu'il y a moins de 6 projets -->
+        <div v-if="realisations && realisations.length >= 6" class="flex flex-wrap gap-3 justify-center mb-12 animate-on-scroll">
           <button
             v-for="cat in allCategories"
             :key="cat"

@@ -18,6 +18,11 @@
           Email : contact@ajp-construction.fr
         </p>
 
+        <h2>Garanties professionnelles</h2>
+        <p>
+          AJP Construction est assurée pour l'exercice de ses activités de construction. En tant qu'entreprise du bâtiment, nous détenons une assurance responsabilité civile professionnelle et une garantie décennale conformément aux articles L.241-1 et suivants du Code des assurances. Les attestations d'assurance sont disponibles sur demande auprès de nos services.
+        </p>
+
         <h2>Hébergement</h2>
         <p>
           Ce site est hébergé par Vercel Inc.<br />

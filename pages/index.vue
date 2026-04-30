@@ -16,10 +16,10 @@
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-32 sm:py-24 w-full">
         <div class="max-w-3xl pl-6">
-          <!-- Badge -->
+          <!-- Kicker SEO — visible et sémantique -->
           <div class="hero-badge flex items-center gap-3 mb-8">
             <div class="h-px w-8 bg-gold-500" />
-            <span class="section-label text-gold-500">Entreprise de construction — La Réunion (974)</span>
+            <p class="section-label text-gold-500">Entreprise de construction tous corps d'état · La Réunion (974)</p>
           </div>
 
           <!-- Animated red line -->
@@ -27,11 +27,10 @@
 
           <!-- Title -->
           <h1 class="font-display leading-none mb-8">
-            <span class="sr-only">Entreprise de construction tous corps d'état · La Réunion 974</span>
-            <span class="hero-title-1 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-wide" aria-hidden="true">
+            <span class="hero-title-1 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-white tracking-wide">
               CONSTRUISONS
             </span>
-            <span class="hero-title-2 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-primary-500 tracking-wide" aria-hidden="true">
+            <span class="hero-title-2 block text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-primary-500 tracking-wide">
               ENSEMBLE
             </span>
           </h1>
