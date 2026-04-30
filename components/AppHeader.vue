@@ -35,7 +35,7 @@
 
         <!-- Mobile menu button -->
         <button
-          class="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors text-white"
+          class="md:hidden p-3 rounded-lg hover:bg-white/10 transition-colors text-white"
           @click="mobileMenuOpen = !mobileMenuOpen"
           aria-label="Menu"
         >
