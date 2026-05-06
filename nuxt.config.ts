@@ -21,6 +21,54 @@ export default defineNuxtConfig({
     head: {
       title: 'AJP Construction — Entreprise BTP tous corps d\'état à La Réunion',
       htmlAttrs: { lang: 'fr' },
+      script: [
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'GeneralContractor',
+            name: 'AJP Construction',
+            description: 'Entreprise de bâtiment tous corps d\'état à La Réunion. Terrassement, gros œuvre, charpente, couverture, second œuvre.',
+            url: 'https://www.ajp-construction.fr',
+            telephone: '+262692422492',
+            email: 'ajc.pedroa@outlook.fr',
+            logo: 'https://www.ajp-construction.fr/logo.png',
+            image: 'https://www.ajp-construction.fr/og-image.jpg',
+            priceRange: '€€',
+            foundingDate: '1987',
+            address: {
+              '@type': 'PostalAddress',
+              addressRegion: 'La Réunion',
+              postalCode: '974',
+              addressCountry: 'RE',
+            },
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: -21.1151,
+              longitude: 55.5364,
+            },
+            areaServed: [
+              { '@type': 'City', name: 'Saint-Denis' },
+              { '@type': 'City', name: 'Saint-Pierre' },
+              { '@type': 'City', name: 'Saint-Paul' },
+              { '@type': 'City', name: 'Le Port' },
+              { '@type': 'City', name: 'Saint-André' },
+              { '@type': 'City', name: 'Saint-Louis' },
+            ],
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: 'Services BTP',
+              itemListElement: [
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Terrassement et VRD' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Gros œuvre' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Charpente et couverture' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Second œuvre' } },
+              ],
+            },
+            sameAs: [],
+          }),
+        },
+      ],
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },

@@ -163,6 +163,29 @@
       </div>
     </section>
 
+    <!-- ZONES D'INTERVENTION -->
+    <section class="py-16 md:py-20 bg-dark-900 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px w-8 bg-primary-500" />
+            <span class="section-label">Secteur d'intervention</span>
+          </div>
+          <h2 class="font-display text-4xl sm:text-5xl text-white tracking-wide leading-none">
+            TOUTE <span class="text-primary-500">L'ÎLE</span>
+          </h2>
+        </div>
+        <p class="text-dark-300 text-base mb-8 max-w-2xl">
+          AJP Construction intervient sur l'ensemble de La Réunion (974) pour vos projets de construction neuve, rénovation et aménagement.
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+          <div v-for="ville in zones" :key="ville" class="bg-dark-800 border border-dark-700 rounded-lg px-4 py-3 text-center">
+            <span class="text-dark-200 text-sm font-medium">{{ ville }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section id="contact" class="relative overflow-hidden bg-dark-900 py-16 md:py-28 border-t border-white/5">
       <!-- Background accent -->
@@ -262,6 +285,11 @@ const services = [
     description: 'Plomberie, électricité, peinture, carrelage.',
     items: ['Plomberie', 'Électricité', 'Peinture', 'Carrelage'],
   },
+]
+
+const zones = [
+  'Saint-Denis', 'Saint-Pierre', 'Saint-Paul', 'Le Port',
+  'Saint-André', 'Saint-Louis',
 ]
 
 function goToCategory(category: string) {

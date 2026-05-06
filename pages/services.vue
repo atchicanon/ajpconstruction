@@ -94,6 +94,62 @@ useHead({
   link: [
     { rel: 'canonical', href: 'https://www.ajp-construction.fr/services' },
   ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Services BTP AJP Construction — La Réunion',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            item: {
+              '@type': 'Service',
+              name: 'Terrassement et VRD',
+              description: 'Décapage, fouilles, voirie et réseaux divers, assainissement, drainage. Intervention sur toute La Réunion.',
+              provider: { '@type': 'GeneralContractor', name: 'AJP Construction' },
+              areaServed: 'La Réunion',
+            },
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            item: {
+              '@type': 'Service',
+              name: 'Gros œuvre',
+              description: 'Fondations, maçonnerie, dallage, béton armé, élévation. Construction neuve et rénovation à La Réunion.',
+              provider: { '@type': 'GeneralContractor', name: 'AJP Construction' },
+              areaServed: 'La Réunion',
+            },
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            item: {
+              '@type': 'Service',
+              name: 'Charpente et couverture',
+              description: 'Charpente bois et métal, couverture tôle et tuiles, étanchéité, zinguerie à La Réunion.',
+              provider: { '@type': 'GeneralContractor', name: 'AJP Construction' },
+              areaServed: 'La Réunion',
+            },
+          },
+          {
+            '@type': 'ListItem',
+            position: 4,
+            item: {
+              '@type': 'Service',
+              name: 'Second œuvre',
+              description: 'Plomberie, électricité, peinture, carrelage, menuiserie. Finitions pour votre construction à La Réunion.',
+              provider: { '@type': 'GeneralContractor', name: 'AJP Construction' },
+              areaServed: 'La Réunion',
+            },
+          },
+        ],
+      }),
+    },
+  ],
 })
 
 useScrollAnimation()
