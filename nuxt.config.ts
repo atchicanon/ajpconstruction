@@ -92,7 +92,6 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: 'https://www.ajp-construction.fr/og-image.jpg' },
       ],
       link: [
-        { rel: 'canonical', href: 'https://www.ajp-construction.fr' },
         { rel: 'icon', type: 'image/png', href: '/logo.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
