@@ -465,12 +465,13 @@
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-dark-300 mb-2">Lien vidéo (YouTube ou Facebook)</label>
+                <label class="block text-sm font-medium text-dark-300 mb-2">Lien (page ou vidéo)</label>
                 <input
                   v-model="pubForm.videoUrl"
                   class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                  placeholder="https://www.youtube.com/watch?v=... ou https://www.facebook.com/..."
+                  placeholder="Lien YouTube, Facebook, ou vers n'importe quelle page"
                 />
+                <p class="text-dark-500 text-xs mt-1.5">Une vidéo YouTube ou Facebook s'affichera directement. Tout autre lien (page, article...) s'affichera en bouton cliquable.</p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-dark-300 mb-2">Photo</label>
@@ -864,7 +865,7 @@ async function handlePubImageUpload(e: Event) {
 
 async function savePublication() {
   if (!pubForm.videoUrl && !pubForm.image) {
-    alert('Ajoute au moins un lien vidéo ou une photo.')
+    alert('Ajoute au moins un lien ou une photo.')
     return
   }
   pubSaving.value = true

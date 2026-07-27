@@ -38,20 +38,28 @@
                 <div v-if="pub.image" class="aspect-video bg-black">
                   <img :src="pub.image" :alt="pub.title" class="w-full h-full object-cover" />
                 </div>
-                <div v-if="pub.videoUrl" class="aspect-video bg-black">
-                  <iframe
-                    v-if="getVideoEmbedUrl(pub.videoUrl)"
-                    :src="getVideoEmbedUrl(pub.videoUrl)!"
-                    class="w-full h-full"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    loading="lazy"
-                  />
-                  <div v-else class="w-full h-full flex items-center justify-center">
-                    <a :href="pub.videoUrl" target="_blank" rel="noopener noreferrer" class="text-primary-400 hover:text-primary-300 underline">
-                      Voir la vidéo
-                    </a>
+                <div v-if="pub.videoUrl">
+                  <div v-if="getVideoEmbedUrl(pub.videoUrl)" class="aspect-video bg-black">
+                    <iframe
+                      :src="getVideoEmbedUrl(pub.videoUrl)!"
+                      class="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      loading="lazy"
+                    />
                   </div>
+                  <a
+                    v-else
+                    :href="pub.videoUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center gap-3 px-6 py-4 bg-dark-700 hover:bg-dark-600 transition-colors text-primary-400 hover:text-primary-300"
+                  >
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 010 5.656l-3 3a4 4 0 01-5.656-5.656l1.5-1.5M10.172 13.828a4 4 0 010-5.656l3-3a4 4 0 015.656 5.656l-1.5 1.5" />
+                    </svg>
+                    <span class="font-medium">Voir le lien</span>
+                  </a>
                 </div>
                 <div class="p-6 md:p-8">
                   <h2 class="text-2xl font-bold mb-3">{{ pub.title }}</h2>
