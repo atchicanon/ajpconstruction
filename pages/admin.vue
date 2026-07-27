@@ -248,12 +248,17 @@
               class="bg-dark-800 rounded-xl border border-dark-700 p-6 hover:border-dark-600 transition-colors"
             >
               <div class="flex items-start justify-between gap-4">
-                <div class="min-w-0">
-                  <h3 class="text-lg font-bold">{{ pub.title }}</h3>
-                  <p class="text-dark-400 text-sm mt-2 line-clamp-2">{{ pub.description }}</p>
-                  <a :href="pub.videoUrl" target="_blank" rel="noopener noreferrer" class="text-primary-400 hover:text-primary-300 text-xs mt-2 inline-block break-all">
-                    {{ pub.videoUrl }}
-                  </a>
+                <div class="flex gap-4 min-w-0">
+                  <div v-if="pub.image" class="w-20 h-20 rounded-lg overflow-hidden bg-dark-700 shrink-0">
+                    <img :src="pub.image" :alt="pub.title" class="w-full h-full object-cover" />
+                  </div>
+                  <div class="min-w-0">
+                    <h3 class="text-lg font-bold">{{ pub.title }}</h3>
+                    <p class="text-dark-400 text-sm mt-2 line-clamp-2">{{ pub.description }}</p>
+                    <a v-if="pub.videoUrl" :href="pub.videoUrl" target="_blank" rel="noopener noreferrer" class="text-primary-400 hover:text-primary-300 text-xs mt-2 inline-block break-all">
+                      {{ pub.videoUrl }}
+                    </a>
+                  </div>
                 </div>
                 <div class="flex items-center gap-2 shrink-0">
                   <button
@@ -460,13 +465,37 @@
                 />
               </div>
               <div>
-                <label class="block text-sm font-medium text-dark-300 mb-2">Lien vidéo (YouTube ou Facebook) *</label>
+                <label class="block text-sm font-medium text-dark-300 mb-2">Lien vidéo (YouTube ou Facebook)</label>
                 <input
                   v-model="pubForm.videoUrl"
-                  required
                   class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   placeholder="https://www.youtube.com/watch?v=... ou https://www.facebook.com/..."
                 />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-dark-300 mb-2">Photo</label>
+                <div v-if="pubForm.image" class="relative w-full aspect-video rounded-lg overflow-hidden bg-dark-700 mb-3">
+                  <img :src="pubForm.image" class="w-full h-full object-cover" />
+                  <button
+                    type="button"
+                    @click="pubForm.image = ''"
+                    class="absolute top-2 right-2 w-7 h-7 bg-red-500 rounded-full flex items-center justify-center"
+                  >
+                    <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <div
+                  class="border-2 border-dashed border-dark-600 rounded-xl p-6 text-center hover:border-primary-500/50 transition-colors cursor-pointer"
+                  @click="pubImageInput?.click()"
+                >
+                  <p class="text-dark-400 text-sm">
+                    <span class="text-primary-400 font-medium">Cliquez</span> pour {{ pubForm.image ? 'changer' : 'ajouter' }} une photo
+                  </p>
+                </div>
+                <input ref="pubImageInput" type="file" accept="image/*" class="hidden" @change="handlePubImageUpload" />
+                <p v-if="pubImageUploading" class="text-dark-400 text-sm mt-2">Envoi de la photo...</p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-dark-300 mb-2">Description</label>
@@ -474,7 +503,7 @@
                   v-model="pubForm.description"
                   rows="3"
                   class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-none"
-                  placeholder="Décrivez la vidéo..."
+                  placeholder="Décrivez la publication..."
                 />
               </div>
 
@@ -771,6 +800,7 @@ interface Publication {
   title: string
   description: string
   videoUrl: string
+  image: string
   createdAt: string
 }
 
@@ -778,11 +808,14 @@ const publications = ref<Publication[]>([])
 const showPubModal = ref(false)
 const editingPub = ref<Publication | null>(null)
 const pubSaving = ref(false)
+const pubImageInput = ref<HTMLInputElement | null>(null)
+const pubImageUploading = ref(false)
 
 const pubForm = reactive({
   title: '',
   description: '',
   videoUrl: '',
+  image: '',
 })
 
 async function loadPublications() {
@@ -793,6 +826,7 @@ function resetPubForm() {
   pubForm.title = ''
   pubForm.description = ''
   pubForm.videoUrl = ''
+  pubForm.image = ''
 }
 
 function openAddPubModal() {
@@ -806,10 +840,33 @@ function openEditPubModal(pub: Publication) {
   pubForm.title = pub.title
   pubForm.description = pub.description
   pubForm.videoUrl = pub.videoUrl
+  pubForm.image = pub.image
   showPubModal.value = true
 }
 
+async function handlePubImageUpload(e: Event) {
+  const input = e.target as HTMLInputElement
+  if (!input.files?.length) return
+
+  pubImageUploading.value = true
+  try {
+    const formData = new FormData()
+    formData.append('folder', 'publications')
+    formData.append('files', input.files[0])
+
+    const result = await $fetch<{ files: string[] }>('/api/upload', { method: 'POST', body: formData })
+    pubForm.image = result.files[0]
+  } finally {
+    pubImageUploading.value = false
+    input.value = ''
+  }
+}
+
 async function savePublication() {
+  if (!pubForm.videoUrl && !pubForm.image) {
+    alert('Ajoute au moins un lien vidéo ou une photo.')
+    return
+  }
   pubSaving.value = true
   try {
     if (editingPub.value) {

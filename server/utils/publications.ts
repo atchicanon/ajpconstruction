@@ -5,6 +5,7 @@ export interface Publication {
   title: string
   description: string
   videoUrl: string
+  image: string
   createdAt: string
 }
 

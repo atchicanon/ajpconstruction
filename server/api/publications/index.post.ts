@@ -3,7 +3,7 @@ import { getPublications, savePublications, generatePublicationId } from '../../
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  if (!body.title || !body.videoUrl) {
+  if (!body.title || (!body.videoUrl && !body.image)) {
     throw createError({ statusCode: 400, message: 'Champs obligatoires manquants' })
   }
 
@@ -13,7 +13,8 @@ export default defineEventHandler(async (event) => {
     id: generatePublicationId(body.title),
     title: body.title,
     description: body.description || '',
-    videoUrl: body.videoUrl,
+    videoUrl: body.videoUrl || '',
+    image: body.image || '',
     createdAt: new Date().toISOString(),
   }
 

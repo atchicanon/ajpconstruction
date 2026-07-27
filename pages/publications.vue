@@ -35,7 +35,10 @@
             <div class="relative">
               <div class="absolute -inset-1 rounded-2xl gradient-border opacity-30 blur-sm" />
               <div class="relative bg-dark-800 rounded-2xl border border-dark-700 overflow-hidden">
-                <div class="aspect-video bg-black">
+                <div v-if="pub.image" class="aspect-video bg-black">
+                  <img :src="pub.image" :alt="pub.title" class="w-full h-full object-cover" />
+                </div>
+                <div v-if="pub.videoUrl" class="aspect-video bg-black">
                   <iframe
                     v-if="getVideoEmbedUrl(pub.videoUrl)"
                     :src="getVideoEmbedUrl(pub.videoUrl)!"
@@ -125,6 +128,7 @@ interface Publication {
   title: string
   description: string
   videoUrl: string
+  image: string
   createdAt: string
 }
 
