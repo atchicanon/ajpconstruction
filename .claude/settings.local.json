@@ -12,7 +12,9 @@
       "Bash(npx nuxi:*)",
       "Bash(ls server/api/realisations*)",
       "Bash(mkdir -p /home/user/ajpconstruction/public/materiel)",
-      "Bash(cp \"/root/.claude/uploads/0b1775c0-df52-5e9c-ab45-11e46d41cc7b/53977f85-FullSizeRender.jpeg\" /home/user/ajpconstruction/public/materiel/pelle-carter-ct60-9.jpg)"
+      "Bash(cp \"/root/.claude/uploads/0b1775c0-df52-5e9c-ab45-11e46d41cc7b/53977f85-FullSizeRender.jpeg\" /home/user/ajpconstruction/public/materiel/pelle-carter-ct60-9.jpg)",
+      "Bash(mkdir -p /tmp/claude-0/-home-user-ajpconstruction/0b1775c0-df52-5e9c-ab45-11e46d41cc7b/scratchpad)",
+      "Bash(cp \"/root/.claude/uploads/0b1775c0-df52-5e9c-ab45-11e46d41cc7b/53977f85-FullSizeRender.jpeg\" /tmp/claude-0/-home-user-ajpconstruction/0b1775c0-df52-5e9c-ab45-11e46d41cc7b/scratchpad/pelle-carter-ct60-9.jpg)"
     ]
   },
   "model": "sonnet"
