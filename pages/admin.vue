@@ -61,6 +61,13 @@
           >
             Page d'accueil
           </button>
+          <button
+            @click="activeTab = 'publications'"
+            class="px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+            :class="activeTab === 'publications' ? 'bg-primary-500 text-white' : 'text-dark-400 hover:text-white'"
+          >
+            Publications
+          </button>
         </div>
 
         <!-- ── TAB HOMEPAGE ── -->
@@ -128,7 +135,7 @@
         </div>
 
         <!-- ── TAB REALISATIONS ── -->
-        <div v-else>
+        <div v-else-if="activeTab === 'realisations'">
         <!-- Stats -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <div class="bg-dark-800 rounded-xl p-6 border border-dark-700">
@@ -219,6 +226,59 @@
           </div>
         </div>
         </div> <!-- end tab realisations -->
+
+        <!-- ── TAB PUBLICATIONS ── -->
+        <div v-else-if="activeTab === 'publications'">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold">Publications</h2>
+            <button @click="openAddPubModal" class="btn-primary text-sm">
+              + Ajouter une publication
+            </button>
+          </div>
+
+          <div v-if="publications.length === 0" class="bg-dark-800 rounded-2xl p-12 border border-dark-700 text-center">
+            <p class="text-dark-400 text-lg mb-4">Aucune publication pour le moment</p>
+            <button @click="openAddPubModal" class="btn-primary">Ajouter votre première publication</button>
+          </div>
+
+          <div v-else class="space-y-4">
+            <div
+              v-for="pub in publications"
+              :key="pub.id"
+              class="bg-dark-800 rounded-xl border border-dark-700 p-6 hover:border-dark-600 transition-colors"
+            >
+              <div class="flex items-start justify-between gap-4">
+                <div class="min-w-0">
+                  <h3 class="text-lg font-bold">{{ pub.title }}</h3>
+                  <p class="text-dark-400 text-sm mt-2 line-clamp-2">{{ pub.description }}</p>
+                  <a :href="pub.videoUrl" target="_blank" rel="noopener noreferrer" class="text-primary-400 hover:text-primary-300 text-xs mt-2 inline-block break-all">
+                    {{ pub.videoUrl }}
+                  </a>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                  <button
+                    @click="openEditPubModal(pub)"
+                    class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors"
+                    title="Modifier"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                  </button>
+                  <button
+                    @click="deletePublication(pub)"
+                    class="p-2 rounded-lg bg-dark-700 hover:bg-red-500/20 hover:text-red-400 transition-colors"
+                    title="Supprimer"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -366,6 +426,71 @@
         </div>
       </Transition>
     </Teleport>
+
+    <!-- Modal ajout/édition publication -->
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div v-if="showPubModal" class="fixed inset-0 z-50 flex items-start justify-center p-4 pt-20 overflow-y-auto">
+          <div class="absolute inset-0 bg-dark-900/80" @click="showPubModal = false" />
+          <div class="relative bg-dark-800 rounded-2xl w-full max-w-xl border border-dark-700 shadow-2xl mb-20">
+            <div class="flex items-center justify-between p-6 border-b border-dark-700">
+              <h2 class="text-xl font-bold text-white">{{ editingPub ? 'Modifier' : 'Ajouter' }} une publication</h2>
+              <button @click="showPubModal = false" class="p-2 hover:bg-dark-700 rounded-lg transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <form @submit.prevent="savePublication" class="p-6 space-y-5">
+              <div>
+                <label class="block text-sm font-medium text-dark-300 mb-2">Titre *</label>
+                <input
+                  v-model="pubForm.title"
+                  required
+                  class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="Ex: Comment utiliser la mini-pelle en sécurité"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-dark-300 mb-2">Lien vidéo (YouTube ou Facebook) *</label>
+                <input
+                  v-model="pubForm.videoUrl"
+                  required
+                  class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  placeholder="https://www.youtube.com/watch?v=... ou https://www.facebook.com/..."
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-dark-300 mb-2">Description</label>
+                <textarea
+                  v-model="pubForm.description"
+                  rows="3"
+                  class="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-lg text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-none"
+                  placeholder="Décrivez la vidéo..."
+                />
+              </div>
+
+              <div class="flex items-center justify-end gap-3 pt-4 border-t border-dark-700">
+                <button type="button" @click="showPubModal = false" class="px-6 py-2.5 text-dark-400 hover:text-white transition-colors">
+                  Annuler
+                </button>
+                <button type="submit" :disabled="pubSaving" class="btn-primary disabled:opacity-50">
+                  {{ pubSaving ? 'Enregistrement...' : (editingPub ? 'Modifier' : 'Ajouter') }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -381,7 +506,7 @@ onMounted(async () => {
   try {
     await $fetch('/api/auth/check')
     authenticated.value = true
-    await Promise.all([loadRealisations(), loadHomepage()])
+    await Promise.all([loadRealisations(), loadHomepage(), loadPublications()])
   } catch {
     // not authenticated, show login form
   }
@@ -401,6 +526,7 @@ async function login() {
     authenticated.value = true
     loadRealisations()
     loadHomepage()
+    loadPublications()
   } catch {
     loginError.value = true
   } finally {
@@ -415,7 +541,7 @@ async function logout() {
 }
 
 // Tabs
-const activeTab = ref<'realisations' | 'homepage'>('realisations')
+const activeTab = ref<'realisations' | 'homepage' | 'publications'>('realisations')
 
 // Homepage
 interface HomepageCard { image: string; label: string; category: string }
@@ -637,5 +763,77 @@ function handleFileSelect(e: Event) {
 function handleDrop(e: DragEvent) {
   isDragging.value = false
   if (e.dataTransfer?.files) uploadFiles(e.dataTransfer.files)
+}
+
+// Publications
+interface Publication {
+  id: string
+  title: string
+  description: string
+  videoUrl: string
+  createdAt: string
+}
+
+const publications = ref<Publication[]>([])
+const showPubModal = ref(false)
+const editingPub = ref<Publication | null>(null)
+const pubSaving = ref(false)
+
+const pubForm = reactive({
+  title: '',
+  description: '',
+  videoUrl: '',
+})
+
+async function loadPublications() {
+  publications.value = await $fetch<Publication[]>('/api/publications', { query: { t: Date.now() } })
+}
+
+function resetPubForm() {
+  pubForm.title = ''
+  pubForm.description = ''
+  pubForm.videoUrl = ''
+}
+
+function openAddPubModal() {
+  editingPub.value = null
+  resetPubForm()
+  showPubModal.value = true
+}
+
+function openEditPubModal(pub: Publication) {
+  editingPub.value = pub
+  pubForm.title = pub.title
+  pubForm.description = pub.description
+  pubForm.videoUrl = pub.videoUrl
+  showPubModal.value = true
+}
+
+async function savePublication() {
+  pubSaving.value = true
+  try {
+    if (editingPub.value) {
+      publications.value = await $fetch<Publication[]>(`/api/publications/${editingPub.value.id}`, {
+        method: 'PUT',
+        body: { ...pubForm },
+      })
+    } else {
+      publications.value = await $fetch<Publication[]>('/api/publications', {
+        method: 'POST',
+        body: { ...pubForm },
+      })
+    }
+    showPubModal.value = false
+  } catch (e) {
+    console.error('Erreur:', e)
+  } finally {
+    pubSaving.value = false
+  }
+}
+
+async function deletePublication(pub: Publication) {
+  if (!confirm(`Supprimer "${pub.title}" ?`)) return
+
+  publications.value = await $fetch<Publication[]>(`/api/publications/${pub.id}`, { method: 'DELETE' })
 }
 </script>
