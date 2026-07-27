@@ -93,6 +93,7 @@ const navLinks = [
   { to: '/', label: 'Accueil' },
   { to: '/realisations', label: 'Réalisations' },
   { to: '/#expertise', label: 'Expertise' },
+  { to: '/location', label: 'Location' },
   { to: '/devis', label: 'Contact' },
 ]
 </script>
