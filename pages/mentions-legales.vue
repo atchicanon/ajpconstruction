@@ -41,7 +41,7 @@
 
         <h2>Cookies</h2>
         <p>
-          Ce site n'utilise pas de cookies à des fins de suivi publicitaire. Seuls des cookies techniques nécessaires au fonctionnement du site peuvent être utilisés.
+          Ce site utilise Google Tag Manager pour mesurer son audience. Aucun cookie de mesure ou de suivi n'est déposé sans votre consentement, que vous pouvez accepter ou refuser via le bandeau affiché à votre première visite. Vous pouvez modifier votre choix à tout moment via le lien « Gérer les cookies » en bas de page.
         </p>
       </div>
     </section>

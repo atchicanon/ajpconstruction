@@ -19,7 +19,20 @@
         <NuxtLink to="/mentions-legales" class="text-dark-500 hover:text-dark-300 text-sm transition-colors">
           Mentions légales
         </NuxtLink>
+        <button
+          type="button"
+          class="text-dark-500 hover:text-dark-300 text-sm transition-colors"
+          @click="openCookieBanner"
+        >
+          Gérer les cookies
+        </button>
       </div>
     </div>
   </footer>
 </template>
+
+<script setup lang="ts">
+function openCookieBanner() {
+  window.dispatchEvent(new Event('open-cookie-banner'))
+}
+</script>
