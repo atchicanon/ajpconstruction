@@ -12,5 +12,6 @@
     </main>
     <AppFooter />
     <WhatsAppButton />
+    <CookieBanner />
   </div>
 </template>
